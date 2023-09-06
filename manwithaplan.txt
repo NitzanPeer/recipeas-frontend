@@ -1,0 +1,26 @@
+Cmps & Views:
+--------------
+list cmp
+preview cmp
+list view
+recipe view
+
+
+Home view:
+---------
+list of current recipes, each including title, short description, pic, link to recipe view
+add recipe btn -> popup of add recipe form (view)
+
+Recipe obj -
+
+* Id - str
+* Title - str
+* Description (short) - str (textbox?)
+* Ingredients - str (textbox?)
+* Method(s?) - str (textbox?)
+
+
+TODO:
+Create and connect store
+Routing
+CRUDL
