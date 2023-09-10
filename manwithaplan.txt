@@ -2,9 +2,10 @@ Cmps & Views:
 --------------
 list cmp
 preview cmp
+details cmp
+
 list view
 recipe view
-
 
 Home view:
 ---------
@@ -16,11 +17,18 @@ Recipe obj -
 * Id - str
 * Title - str
 * Description (short) - str (textbox?)
-* Ingredients - str (textbox?)
-* Method(s?) - str (textbox?)
+* Ingredients - list
+* Method(s?) - list
 
 
 TODO:
-Create and connect store
+CRUD (recipes)
+CRUD (ingriedients + method steps)
 Routing
-CRUDL
+Create and connect store
+
+emits with same name from two diff cmps?
+
+Bugs:
+-----
+update not working properly, might need the store for reactivity

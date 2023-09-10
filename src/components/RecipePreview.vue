@@ -1,10 +1,10 @@
 <template>
-    <span>{{ recipe.title }}</span>
-    <p>{{ recipe.description }}</p>
-    <!-- <p>{{ recipe.ingredients }}</p> -->
-    <!-- <p>{{ recipe.method }}</p> -->
-</template>
+    <div @click="onRecipeClick">
+        <h4>{{ recipe.title }}</h4>
+        <p>{{ recipe.description }}</p>
+    </div>
 
+</template>
 <script>
 export default {
 
