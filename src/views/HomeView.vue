@@ -18,6 +18,7 @@ import RecipeDetails from '../components/RecipeDetails.vue'
 import RecipeList from '../components/RecipeList.vue'
 import RecipeEdit from '../components/RecipeEdit.vue'
 import { recipeService } from '../services/recipe.service.local'
+import { eventBus } from '../services/event-bus.service'
 
 export default {
     data() {
@@ -33,6 +34,7 @@ export default {
     },
     created() {
         this.getRecipes()
+        eventBus.on('recipeChanged', this.getRecipes)
     },
     methods: {
         remove(id) {

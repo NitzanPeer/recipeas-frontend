@@ -254,10 +254,6 @@ const DEMO_DATA_HEBREW = [
 import { reactive } from 'vue'
 import { utilService } from './util.service.js'
 
-const recipes = reactive(
-    getRecipes()
-  )
-
 export const recipeService = {
     getRecipes,
     getById,
@@ -295,14 +291,13 @@ function addRecipe(recipe) {
     saveRecipes(recipes)
 }
 
-function updateRecipe(recipeToUpdate) {
+function updateRecipe(updatedRecipe) {
     const recipes = getRecipes()
-    const idx = recipes.findIndex(recipe => recipe.id === recipeToUpdate.id)
-    console.log('recipes before', recipes)
+    const idx = recipes.findIndex(recipe => recipe.id === updatedRecipe.id)
     if (idx !== -1) {
-        recipes[idx] = { ...recipeToUpdate }
+        recipes[idx] = updatedRecipe
     }
-    console.log('recipes after', recipes)
+    saveRecipes(recipes)
 }
 
 function removeRecipe(id) {

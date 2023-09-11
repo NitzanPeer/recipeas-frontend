@@ -32,8 +32,8 @@
             </div>
 
             <div class="button-row">
-                <RouterLink tag="button" class="link" :to="'/'">סגור</RouterLink>
                 <button type="submit" @click.stop.prevent="submitForm">שמור</button>
+                <RouterLink tag="button" class="link" :to="'/'">סגור</RouterLink>
             </div>
         </form>
     </div>
@@ -41,6 +41,7 @@
 
 <script>
 import { recipeService } from '../services/recipe.service.local'
+import { eventBus } from '../services/event-bus.service'
 
 export default {
     props: {
@@ -80,7 +81,8 @@ export default {
             } else {
                 recipeService.addRecipe(this.recipe)
             }
-            this.recipes = recipeService.getRecipes()
+
+            eventBus.emit('recipeChanged', this.recipe.id)
             this.$router.push("/")
 
         },

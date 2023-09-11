@@ -22,13 +22,9 @@ Recipe obj -
 
 
 TODO:
-* CRUD (ingriedients + method steps)
-* i18n or just make everything Heb
+* Decide if RecipeEdit and RecipeDetails are views or cmps and change imports if needed
+* UI for adding and removing ingriedients / method steps
+* i18n or just make everything Heb (if time permits)
 * Create and connect store (if needed)
 
-
 emits with same name from two diff cmps?
-
-Bugs:
------
-update not working properly, might need the store for reactivity

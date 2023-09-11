@@ -10,9 +10,9 @@
                 <img src="../assets/images/lo-mien.jpg" />
 
                 <div class="button-row">
-                    <button @click="onRemoveRecipe(recipe.id)">הסר</button>
-                    <RouterLink tag="button" class="link" :to="'/recipe/edit/' + recipe.id">ערוך</RouterLink>
                     <RouterLink tag="button" class="link" :to="'/recipe/details/' + recipe.id">צפה</RouterLink>
+                    <RouterLink tag="button" class="link" :to="'/recipe/edit/' + recipe.id">ערוך</RouterLink>
+                    <button @click="onRemoveRecipe(recipe.id)">הסר</button>
                 </div>
             </li>
         </ul>
