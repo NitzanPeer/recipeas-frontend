@@ -22,10 +22,10 @@ Recipe obj -
 
 
 TODO:
-CRUD (recipes)
-CRUD (ingriedients + method steps)
-Routing
-Create and connect store
+* CRUD (ingriedients + method steps)
+* i18n or just make everything Heb
+* Create and connect store (if needed)
+
 
 emits with same name from two diff cmps?
 

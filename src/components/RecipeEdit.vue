@@ -3,32 +3,37 @@
         <h2>{{ this.header }}</h2>
         <form @submit.prevent="submitForm">
 
-            <label>Title</label>
             <div class="group">
+                <label>שם</label>
                 <input type="text" v-model="recipe.title">
             </div>
 
-            <label>Description</label>
             <div class="group">
+                <label>תיאור</label>
                 <textarea name="" id="" cols="70" rows="4" v-model="recipe.description"></textarea>
             </div>
 
-            <label>Ingredients</label>
             <div class="group">
-                <div class="ingredient">
-                    <textarea name="" id="" cols="70" rows="15" v-model="recipe.ingredients"></textarea>
-                </div>
+                <label>מרכיבים</label>
+                <ul>
+                    <li v-if="recipe.ingredients.length" v-for="(ingredient, idx) in recipe.ingredients">
+                        <input class="ingridient-input" type="text" v-model="recipe.ingredients[idx]">
+                    </li>
+                </ul>
             </div>
 
-            <label>Method</label>
             <div class="group">
-                <textarea name="" id="" cols="70" rows="15" v-model="recipe.method"></textarea>
+                <label>אופן הכנה</label>
+                <ol>
+                    <li v-if="recipe.method.length" v-for="(step, idx) in recipe.method">
+                        <input class="step-input" type="text" v-model="recipe.method[idx]">
+                    </li>
+                </ol>
             </div>
 
             <div class="button-row">
-                <!-- <button type="submit">Submit</button> -->
-                <RouterLink tag="button" class="link" :to="'/'">Close</RouterLink>
-                <RouterLink type="submit" tag="button" class="link" :to="'/'">Submit</RouterLink>
+                <RouterLink tag="button" class="link" :to="'/'">סגור</RouterLink>
+                <button type="submit" @click.stop.prevent="submitForm">שמור</button>
             </div>
         </form>
     </div>
@@ -46,8 +51,8 @@ export default {
             recipe: {
                 title: '',
                 description: '',
-                ingredients: [],
-                method: []
+                ingredients: ['', '', ''],
+                method: ['', '', '']
             },
             isEditMode: false,
         }
@@ -70,19 +75,23 @@ export default {
     methods: {
         submitForm() {
             console.log(this.recipe)
-            this.$emit('submitRecipe', this.recipe)
-        },
-        onClose() {
-            this.$emit('closePopup')
+            if (this.recipe.id) {
+                recipeService.updateRecipe(this.recipe)
+            } else {
+                recipeService.addRecipe(this.recipe)
+            }
+            this.recipes = recipeService.getRecipes()
+            this.$router.push("/")
+
         },
         loadRecipe() {
             const recipeId = this.$route.params.recipeId
-            this.recipe = recipeService.getById(parseInt(recipeId))
-        }
+            this.recipe = recipeService.getById(recipeId)
+        },
     },
     computed: {
         header() {
-            const header = this.isEditMode ? 'Edit Mode' : 'Add Mode'
+            const header = this.isEditMode ? 'עריכה' : 'הוספה'
             return header
         }
     }

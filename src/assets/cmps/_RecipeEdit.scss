@@ -1,16 +1,31 @@
 .edit-container {
     display: grid;
     justify-content: center;
+    direction: rtl;
 
     h2 {
         text-align: center;
     }
 
-    input, textarea {
+    input,
+    textarea {
         border-radius: 10px;
         padding: 0.75rem;
         font-size: 1rem;
         font-family: sans-serif;
+    }
+
+    .group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .ingridient-input {
+        width: 30rem;
+    }
+
+    .step-input {
+        width: 100%;
     }
 
     .button-row {
@@ -18,9 +33,12 @@
         display: flex;
         justify-content: space-evenly;
 
-        button {
+        button, a {
             width: 5rem;
         }
     }
-}
 
+    li {
+        direction: rtl;
+    }
+}

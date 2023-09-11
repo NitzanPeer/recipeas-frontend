@@ -4,14 +4,14 @@
         <p>{{ recipe.description }}</p>
         <div>
             <br>
-            <h4>Ingredients:</h4>
+            <h4>מרכיבים:</h4>
             <ol>
                 <li v-for="ingredient in recipe.ingredients">
                     {{ ingredient }}
                 </li>
             </ol>
             <br>
-            <h4>Method:</h4>
+            <h4>אופן הכנה:</h4>
             <ol>
                 <li v-for="step in recipe.method">
                     {{ step }}
@@ -20,7 +20,7 @@
             <br>
         </div>
         <div class="button-row">
-            <RouterLink tag="button" class="link" :to="'/'">Close</RouterLink>
+            <RouterLink tag="button" class="link" :to="'/'">סגור</RouterLink>
         </div>
     </section>
 </template>
@@ -41,7 +41,7 @@ export default {
     methods: {
         loadRecipe() {
             const recipeId = this.$route.params.recipeId
-            this.recipe = recipeService.getById(parseInt(recipeId))
+            this.recipe = recipeService.getById(recipeId)
         },
     },
 }
