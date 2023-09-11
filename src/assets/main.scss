@@ -1,10 +1,11 @@
 // basics
 
-@import 'basics/base.scss';
-@import 'basics/helpers.scss';
-@import 'basics/home.scss';
+@import 'basics/base';
+@import 'basics/helpers';
+@import 'basics/home';
 
 // cmps
 
-@import 'cmps/RecipeList.scss';
-@import 'cmps/RecipeEdit.scss';
+@import 'cmps/RecipeList';
+@import 'cmps/RecipeEdit';
+@import 'cmps/RecipeDetails'

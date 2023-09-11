@@ -1,10 +1,13 @@
 <template>
     <section class="home-container">
-        <header></header>
+        <header>
+
+        </header>
         <main>
             <div class="temp-header">
                 <h1>My Recipe App</h1>
-                <button class="add-recipe-btn" v-if="!popup" @click="togglePopup">Add New Recipe</button>
+                <!-- <button class="add-recipe-btn" v-if="!popup" @click="togglePopup">Add New Recipe</button> -->
+                <RouterLink tag="button" class="link" :to="'/recipe/add/'">Add New Recipe</RouterLink>
             </div>
 
             <RecipeList v-if="!popup" @remove="remove" @edit="edit" :recipes="recipes" />

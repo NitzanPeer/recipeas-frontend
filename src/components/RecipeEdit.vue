@@ -1,5 +1,6 @@
 <template>
-    <div class="popup">
+    <div class="edit-container">
+        <h2>{{ this.header }}</h2>
         <form @submit.prevent="submitForm">
 
             <label>Title</label>
@@ -25,14 +26,16 @@
             </div>
 
             <div class="button-row">
-                <button type="submit">Submit</button>
-                <button type="button" @click="onClose">Close</button>
+                <!-- <button type="submit">Submit</button> -->
+                <RouterLink tag="button" class="link" :to="'/'">Close</RouterLink>
+                <RouterLink type="submit" tag="button" class="link" :to="'/'">Submit</RouterLink>
             </div>
         </form>
     </div>
 </template>
 
 <script>
+import { recipeService } from '../services/recipe.service.local'
 
 export default {
     props: {
@@ -40,18 +43,30 @@ export default {
     },
     data() {
         return {
-            recipe: {},
+            recipe: {
+                title: '',
+                description: '',
+                ingredients: [],
+                method: []
+            },
+            isEditMode: false,
         }
     },
-    watch: {
-        recipeToEdit: {
-            handler(newRecipeToEdit) {
-                this.recipe = { ...newRecipeToEdit }
-            },
-            deep: true, // Watch changes within nested objects (ingredients and method)
-            immediate: true, // Trigger the handler immediately on component creation
-        },
+    created() {
+        if (this.$route.params.recipeId) {
+            this.isEditMode = true
+            this.loadRecipe()
+        }
     },
+    // watch: {
+    //     recipeToEdit: {
+    //         handler(newRecipeToEdit) {
+    //             this.recipe = { ...newRecipeToEdit }
+    //         },
+    //         deep: true, // Watch changes within nested objects (ingredients and method)
+    //         immediate: true, // Trigger the handler immediately on component creation
+    //     },
+    // },
     methods: {
         submitForm() {
             console.log(this.recipe)
@@ -60,6 +75,16 @@ export default {
         onClose() {
             this.$emit('closePopup')
         },
+        loadRecipe() {
+            const recipeId = this.$route.params.recipeId
+            this.recipe = recipeService.getById(parseInt(recipeId))
+        }
+    },
+    computed: {
+        header() {
+            const header = this.isEditMode ? 'Edit Mode' : 'Add Mode'
+            return header
+        }
     }
 }
 </script>

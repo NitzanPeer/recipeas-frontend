@@ -1,6 +1,6 @@
 <template>
     <section class="details-container">
-        <span>{{ recipe.title }}</span>
+        <h2>{{ recipe.title }}</h2>
         <p>{{ recipe.description }}</p>
         <div>
             <br>
@@ -19,17 +19,30 @@
             </ol>
             <br>
         </div>
+        <div class="button-row">
+            <RouterLink tag="button" class="link" :to="'/'">Close</RouterLink>
+        </div>
     </section>
-
 </template>
 <script>
+
+import { recipeService } from '../services/recipe.service.local'
+
 export default {
 
-    props: {
-        recipe: { type: Object },
-        recipeIdx: { type: Number }
+    data() {
+        return {
+            recipe: {}
+        }
+    },
+    created() {
+        this.loadRecipe()
     },
     methods: {
-    }
+        loadRecipe() {
+            const recipeId = this.$route.params.recipeId
+            this.recipe = recipeService.getById(parseInt(recipeId))
+        },
+    },
 }
 </script>

@@ -30,13 +30,15 @@
             max-width: 100%;
         }
 
-        button {
-            width: 5rem;
-        }
+
 
         .button-row {
             display: flex;
             justify-content: space-around;
+
+            button, .link {
+                width: 5rem;
+            }
         }
     }
 

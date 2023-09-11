@@ -3,19 +3,16 @@
         <ul v-if="recipes.length" class="recipe-list clean-list">
             <li v-for="(recipe, idx) in recipes" :class="`card recipe-${recipe.id}`" key="recipe.id">
                 <div>
-                    <!-- <RouterLink :to="'/recipes/' + recipe.id">View Recipe</RouterLink> -->
                     <h4>{{ recipe.title }}</h4>
                     <p>{{ recipe.description }}</p>
                 </div>
-                <!-- <RecipePreview :recipe="recipe" :recipeIdx="idx" /> -->
-                <!-- <RecipeDetails :recipe="recipe" :recipeIdx="idx"/> -->
 
                 <img src="../assets/images/lo-mien.jpg" />
 
                 <div class="button-row">
-                    <button @click="onViewRecipe(recipe)">View</button>
-                    <button @click="onEditRecipe(recipe)">Edit</button>
                     <button @click="onRemoveRecipe(recipe.id)">Remove</button>
+                    <RouterLink tag="button" class="link" :to="'/recipe/edit/' + recipe.id">Edit</RouterLink>
+                    <RouterLink tag="button" class="link" :to="'/recipe/details/' + recipe.id">View</RouterLink>
                 </div>
             </li>
         </ul>
@@ -25,6 +22,8 @@
 <script>
 import RecipePreview from './RecipePreview.vue'
 import RecipeDetails from './RecipeDetails.vue'
+import { RouterLink } from 'vue-router'
+
 
 export default {
     props: {
@@ -32,7 +31,6 @@ export default {
     },
     data() {
         return {
-            image: `https://picsum.photos/id/200/?random=2}`
         }
     },
     created() {

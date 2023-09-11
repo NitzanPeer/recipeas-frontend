@@ -1,17 +1,26 @@
-input, textarea {
-    border-radius: 10px;
-    padding: 0.75rem;
-    font-size: 1rem;
-    font-family: sans-serif;
-}
+.edit-container {
+    display: grid;
+    justify-content: center;
 
-.button-row {
-    text-align: center;
-    display: flex;
-    justify-content: space-evenly;
-
-    button {
+    h2 {
         text-align: center;
-        width: 5rem;
+    }
+
+    input, textarea {
+        border-radius: 10px;
+        padding: 0.75rem;
+        font-size: 1rem;
+        font-family: sans-serif;
+    }
+
+    .button-row {
+        text-align: center;
+        display: flex;
+        justify-content: space-evenly;
+
+        button {
+            width: 5rem;
+        }
     }
 }
+
