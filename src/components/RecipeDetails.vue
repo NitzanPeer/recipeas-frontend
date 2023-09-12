@@ -4,7 +4,7 @@
         <p>{{ recipe.description }}</p>
         <div>
             <br>
-            <h4>מרכיבים:</h4>
+            <h4>רכיבים:</h4>
             <ol>
                 <li v-for="ingredient in recipe.ingredients">
                     {{ ingredient }}

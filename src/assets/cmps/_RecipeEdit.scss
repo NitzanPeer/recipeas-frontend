@@ -3,6 +3,41 @@
     justify-content: center;
     direction: rtl;
 
+    .group {
+        display: flex;
+        flex-direction: column;
+
+        .add-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+
+    .button-row {
+        text-align: center;
+        display: flex;
+        justify-content: space-evenly;
+
+        button, a {
+            width: 5rem;
+            margin: 1rem;
+        }
+    }
+
+    button {
+        margin: 1rem;
+    }
+
+    .btn.add-input {
+        width: 3rem;
+        font-size: 1.5rem;
+    }
+
+    .btn.remove-input  {
+        width: 2rem;
+    }
+
     h2 {
         text-align: center;
     }
@@ -15,28 +50,15 @@
         font-family: sans-serif;
     }
 
-    .group {
-        display: flex;
-        flex-direction: column;
-    }
-
     .ingridient-input {
-        width: 30rem;
+        width: 55rem;
     }
 
     .step-input {
-        width: 100%;
+        width: 55rem;
     }
 
-    .button-row {
-        text-align: center;
-        display: flex;
-        justify-content: space-evenly;
 
-        button, a {
-            width: 5rem;
-        }
-    }
 
     li {
         direction: rtl;

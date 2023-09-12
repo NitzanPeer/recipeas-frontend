@@ -14,12 +14,16 @@
             </div>
 
             <div class="group">
-                <label>מרכיבים</label>
+                <label>רכיבים</label>
                 <ul>
                     <li v-if="recipe.ingredients.length" v-for="(ingredient, idx) in recipe.ingredients">
                         <input class="ingridient-input" type="text" v-model="recipe.ingredients[idx]">
+                        <button class="remove-input btn" @click.stop.prevent="removeIngridient(idx)">X</button>
                     </li>
                 </ul>
+                <div class="add-container">
+                    <button class="add-input btn" @click.stop.prevent="addIngridient">+</button>
+                </div>
             </div>
 
             <div class="group">
@@ -27,12 +31,16 @@
                 <ol>
                     <li v-if="recipe.method.length" v-for="(step, idx) in recipe.method">
                         <input class="step-input" type="text" v-model="recipe.method[idx]">
+                        <button class="remove-input btn" @click.stop.prevent="removeStep(idx)">X</button>
                     </li>
                 </ol>
+                <div class="add-container">
+                    <button class="add-input btn" @click.stop.prevent="addStep">+</button>
+                </div>
             </div>
 
             <div class="button-row">
-                <button type="submit" @click.stop.prevent="submitForm">שמור</button>
+                <button type="submit">שמור</button>
                 <RouterLink tag="button" class="link" :to="'/'">סגור</RouterLink>
             </div>
         </form>
@@ -49,20 +57,15 @@ export default {
     },
     data() {
         return {
-            recipe: {
-                title: '',
-                description: '',
-                ingredients: ['', '', ''],
-                method: ['', '', '']
-            },
+            recipe: {},
             isEditMode: false,
         }
     },
     created() {
         if (this.$route.params.recipeId) {
             this.isEditMode = true
-            this.loadRecipe()
         }
+        this.loadRecipe()
     },
     // watch: {
     //     recipeToEdit: {
@@ -87,8 +90,29 @@ export default {
 
         },
         loadRecipe() {
-            const recipeId = this.$route.params.recipeId
-            this.recipe = recipeService.getById(recipeId)
+            if(this.isEditMode) {
+                const recipeId = this.$route.params.recipeId
+                this.recipe = recipeService.getById(recipeId)
+            } else {
+                this.recipe = {
+                    title: '',
+                    description: '',
+                    ingredients: ['', '', ''],
+                    method: ['', '', ''],
+                }
+            }
+        },
+        addIngridient() {
+            this.recipe.ingredients.push([''])
+        },
+        removeIngridient(idx) {
+            this.recipe.ingredients.splice(idx, 1)
+        },
+        addStep() {
+            this.recipe.method.push([''])
+        },
+        removeStep(idx) {
+            this.recipe.method.splice(idx, 1)
         },
     },
     computed: {
