@@ -2,18 +2,21 @@
     <section class="preview-list-container">
         <ul v-if="recipes.length" class="recipe-list clean-list">
             <li v-for="(recipe, idx) in recipes" :class="`card recipe-${recipe.id}`" key="recipe.id">
-                <div>
+                <div class="upper-card-container">
                     <h4>{{ recipe.title }}</h4>
                     <p>{{ recipe.description }}</p>
                 </div>
 
-                <img src="../assets/images/lo-mien.jpg" />
-
-                <div class="button-row">
-                    <RouterLink tag="button" class="link" :to="'/recipe/details/' + recipe.id">צפה</RouterLink>
-                    <RouterLink tag="button" class="link" :to="'/recipe/edit/' + recipe.id">ערוך</RouterLink>
-                    <button @click="onRemoveRecipe(recipe.id)">הסר</button>
+                <div class="bottom-card-container">
+                    <img src="../assets/images/lo-mien.jpg" />
+                    <div class="button-row">
+                        <RouterLink tag="button" class="btn-config1" :to="'/recipe/details/' + recipe.id">צפה</RouterLink>
+                        <RouterLink tag="button" class="btn-config1" :to="'/recipe/edit/' + recipe.id">ערוך</RouterLink>
+                        <button class="btn-config1" @click="onRemoveRecipe(recipe.id)">הסר</button>
+                    </div>
                 </div>
+
+
             </li>
         </ul>
     </section>

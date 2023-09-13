@@ -3,6 +3,12 @@
     justify-content: center;
     direction: rtl;
 
+    button,
+    a {
+        width: auto;
+        margin: 0.25rem;
+    }
+
     .group {
         display: flex;
         flex-direction: column;
@@ -11,6 +17,12 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+
+            button {
+                font-size: 1.25rem;
+                width: 3.2rem;
+                margin-block-start: 1.5rem;
+            }
         }
     }
 
@@ -19,14 +31,11 @@
         display: flex;
         justify-content: space-evenly;
 
-        button, a {
+        button,
+        a {
             width: 5rem;
             margin: 1rem;
         }
-    }
-
-    button {
-        margin: 1rem;
     }
 
     .btn.add-input {
@@ -34,7 +43,7 @@
         font-size: 1.5rem;
     }
 
-    .btn.remove-input  {
+    .btn.remove-input {
         width: 2rem;
     }
 
@@ -57,8 +66,6 @@
     .step-input {
         width: 55rem;
     }
-
-
 
     li {
         direction: rtl;

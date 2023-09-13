@@ -18,11 +18,11 @@
                 <ul>
                     <li v-if="recipe.ingredients.length" v-for="(ingredient, idx) in recipe.ingredients">
                         <input class="ingridient-input" type="text" v-model="recipe.ingredients[idx]">
-                        <button class="remove-input btn" @click.stop.prevent="removeIngridient(idx)">X</button>
+                        <button class="remove-input btn-config1" @click.stop.prevent="removeIngridient(idx)">X</button>
                     </li>
                 </ul>
                 <div class="add-container">
-                    <button class="add-input btn" @click.stop.prevent="addIngridient">+</button>
+                    <button class="add-input btn-config1" @click.stop.prevent="addIngridient">+</button>
                 </div>
             </div>
 
@@ -31,17 +31,17 @@
                 <ol>
                     <li v-if="recipe.method.length" v-for="(step, idx) in recipe.method">
                         <input class="step-input" type="text" v-model="recipe.method[idx]">
-                        <button class="remove-input btn" @click.stop.prevent="removeStep(idx)">X</button>
+                        <button class="remove-input btn-config1" @click.stop.prevent="removeStep(idx)">X</button>
                     </li>
                 </ol>
                 <div class="add-container">
-                    <button class="add-input btn" @click.stop.prevent="addStep">+</button>
+                    <button class="add-input btn-config1" @click.stop.prevent="addStep">+</button>
                 </div>
             </div>
 
             <div class="button-row">
-                <button type="submit">שמור</button>
-                <RouterLink tag="button" class="link" :to="'/'">סגור</RouterLink>
+                <button class="btn-config1" type="submit">שמור</button>
+                <RouterLink class="btn-config1" tag="button" :to="'/'">סגור</RouterLink>
             </div>
         </form>
     </div>
@@ -99,6 +99,7 @@ export default {
                     description: '',
                     ingredients: ['', '', ''],
                     method: ['', '', ''],
+                    imgURL: ''
                 }
             }
         },

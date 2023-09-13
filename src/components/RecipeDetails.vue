@@ -20,7 +20,7 @@
             <br>
         </div>
         <div class="button-row">
-            <RouterLink tag="button" class="link" :to="'/'">סגור</RouterLink>
+            <RouterLink class="btn-config1" tag="button" :to="'/'">סגור</RouterLink>
         </div>
     </section>
 </template>

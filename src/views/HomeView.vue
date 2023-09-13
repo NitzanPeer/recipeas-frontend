@@ -1,13 +1,7 @@
 <template>
     <section class="home-container">
-        <header>
-
-        </header>
         <main>
-            <div class="temp-header">
-                <RouterLink tag="button" class="link" :to="'/recipe/add/'">הוסף מתכון חדש</RouterLink>
-            </div>
-
+            <RouterLink class="add-recipe-btn" tag="button" :to="'/recipe/add/'">הוסף מתכון חדש</RouterLink>
             <RecipeList @remove="remove" @edit="edit" :recipes="recipes" />
         </main>
     </section>

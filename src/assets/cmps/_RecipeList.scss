@@ -1,4 +1,4 @@
-.preview-list-container ul{
+.preview-list-container ul {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
     direction: rtl;
@@ -20,6 +20,8 @@
         p {
             text-align: start;
             font-size: 1.3rem;
+            line-height: 2.5ex;
+            height: 7.5ex;
         }
 
         h4, p, img {
@@ -31,17 +33,14 @@
             max-width: 100%;
         }
 
-
-
         .button-row {
             display: flex;
             justify-content: space-around;
-
-            button, .link {
-                width: 5rem;
-            }
         }
     }
 
 }
+
+
+
 
