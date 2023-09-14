@@ -18,6 +18,9 @@ export default {
     data() {
         return {
             recipes: [],
+            filterBy: {
+                txt: ''
+            },
             recipeToEdit: {
                 title: '',
                 description: '',
@@ -30,29 +33,19 @@ export default {
     created() {
         this.getRecipes()
         eventBus.on('recipeChanged', this.getRecipes)
+        eventBus.on('updateFilter', this.updateFilter)
     },
     methods: {
+        getRecipes() {
+            this.recipes = recipeService.getRecipes(this.filterBy)
+        },
         remove(id) {
             console.log('remove id', id)
             recipeService.removeRecipe(id)
             this.recipes = recipeService.getRecipes()
         },
-        // submit(recipe) {
-        //     console.log('recipe', recipe)
-        //     if (recipe.id) {
-        //         recipeService.updateRecipe(recipe)
-        //     } else {
-        //         recipeService.addRecipe(recipe)
-        //     }
-        //     this.recipes = recipeService.getRecipes()
-        // },
         edit(recipe) {
-            console.log("🚀 ~ file: HomeView.vue:51 ~ edit ~ recipe:", recipe)
-
             this.recipeToEdit = recipe
-        },
-        getRecipes() {
-            this.recipes = recipeService.getRecipes()
         },
         clearForm() {
             this.recipeToEdit = {
@@ -62,6 +55,10 @@ export default {
                 method: [],
                 imgURL: ''
             }
+        },
+        updateFilter(newFilter) {
+            this.filterBy = newFilter
+            this.getRecipes()
         }
     },
     components: {

@@ -1,7 +1,7 @@
 <template>
     <section class="preview-list-container">
         <ul v-if="recipes.length" class="recipe-list clean-list">
-            <li v-for="(recipe, idx) in recipes" :class="`card recipe-${recipe.id}`" key="recipe.id">
+            <li v-for="(recipe, idx) in this.recipes" :class="`card recipe-${recipe.id}`" key="recipe.id">
                 <div class="upper-card-container">
                     <h4>{{ recipe.title }}</h4>
                     <p>{{ recipe.description }}</p>
@@ -25,7 +25,7 @@
 import RecipePreview from './RecipePreview.vue'
 import RecipeDetails from '../views/RecipeDetails.vue'
 import { RouterLink } from 'vue-router'
-import curryImage from "../assets/images/curry.jpg"
+import { eventBus } from '../services/event-bus.service'
 
 export default {
     props: {
@@ -33,15 +33,15 @@ export default {
     },
     data() {
         return {
-            curryImage: curryImage
+            filterBy: {
+                txt: ''
+            }
         }
     },
     created() {
+        eventBus.on('updateFilter', this.updateFilter)
     },
     methods: {
-        onClickRecipe() {
-
-        },
         onRemoveRecipe(id) {
             this.$emit('remove', id)
         },
@@ -50,7 +50,7 @@ export default {
         },
         onViewRecipe(recipe) {
             this.$emit('view', recipe)
-        }
+        },
     },
     components: {
         RecipePreview,

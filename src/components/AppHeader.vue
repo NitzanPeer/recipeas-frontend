@@ -14,7 +14,7 @@
             </ul>
             <div class="search-container">
                 <span class="material-symbols-outlined icon">search</span>
-                <input type="text" placeholder="חפשו מתכון">
+                <input type="text" v-model="searchText" @input="onInput" placeholder="חפשו מתכון">
             </div>
 
             <div class="left-side-container">
@@ -26,7 +26,22 @@
 
 <script>
 
+import { eventBus } from '../services/event-bus.service'
+
 export default {
+    data() {
+        return {
+            searchText: '',
+            recipes: []
+        }
+    },
+    methods: {
+        onInput() {
+            eventBus.emit('updateFilter', { txt: this.searchText })
+        }
+    },
+    computed: {
+    }
 }
 
 </script>

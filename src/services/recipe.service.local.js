@@ -256,7 +256,6 @@ const DEMO_DATA_HEBREW = [
     }
 ]
 
-import { reactive } from 'vue'
 import { utilService } from './util.service.js'
 import curryIMG from "../assets/images/curry.jpg"
 import tacosIMG from "../assets/images/tacos.jpg"
@@ -277,10 +276,13 @@ function saveRecipes(recipes) {
     utilService.saveToStorage(STORAGE_KEY, recipes)
 }
 
-function getRecipes() {
+function getRecipes(filterBy = { txt: '' }) {
     const recipes = utilService.loadFromStorage(STORAGE_KEY)
+
     if (recipes && recipes.length) {
-        return recipes
+        return recipes.filter(recipe => {
+            return recipe.title.includes(filterBy.txt)
+        })
     } else {
         utilService.saveToStorage(STORAGE_KEY, DEMO_DATA_HEBREW)
         return DEMO_DATA_HEBREW
