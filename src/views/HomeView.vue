@@ -1,7 +1,7 @@
 <template>
     <section class="home-container">
         <main>
-            <RouterLink class="add-recipe-btn" tag="button" :to="'/recipe/add/'">הוסף מתכון חדש</RouterLink>
+            <RouterLink class="btn-config1 add-recipe-btn" tag="button" :to="'/recipe/add/'">הוסף מתכון חדש</RouterLink>
             <RecipeList @remove="remove" @edit="edit" :recipes="recipes" />
         </main>
     </section>

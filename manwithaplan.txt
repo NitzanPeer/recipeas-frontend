@@ -22,8 +22,7 @@ Recipe obj -
 
 
 TODO:
-* Decide if RecipeEdit and RecipeDetails are views or cmps and change imports if needed
-* UI for adding and removing ingriedients / method steps
+* Convert RecipeEdit and RecipeDetails to views from cmps
 * i18n or just make everything Heb (if time permits)
 * Create and connect store (if needed)
 

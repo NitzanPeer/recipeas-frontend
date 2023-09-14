@@ -1,7 +1,6 @@
 <template>
     <section class="details-container">
         <h2>{{ recipe.title }}</h2>
-        <p>{{ recipe.description }}</p>
         <div>
             <br>
             <h4>רכיבים:</h4>

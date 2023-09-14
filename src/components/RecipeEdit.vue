@@ -37,7 +37,7 @@
                 <div class="add-container">
                     <button class="add-input btn-config1" @click.stop.prevent="addStep">+</button>
                 </div>
-                <input type="file" @change="uploadImg">
+                <!-- <input type="file" @change="uploadImg"> -->
             </div>
 
             <div class="button-row">

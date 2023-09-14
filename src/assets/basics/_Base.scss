@@ -52,6 +52,11 @@ a {
     color: black;
     width: 5rem;
     text-align: center;
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+        background-color: rgb(27, 189, 22)
+    }
 }
 
 // notice - rtl on body changes the grid
