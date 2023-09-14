@@ -2,12 +2,15 @@
 
 @import 'basics/base';
 @import 'basics/helpers';
-@import 'basics/home';
+
+// views
+
+@import 'views/home';
+@import 'views/RecipeEdit';
+@import 'views/RecipeDetails';
 
 // cmps
 
 @import 'cmps/Sidebar';
 @import 'cmps/AppHeader';
 @import 'cmps/RecipeList';
-@import 'cmps/RecipeEdit';
-@import 'cmps/RecipeDetails'

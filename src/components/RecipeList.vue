@@ -23,7 +23,7 @@
 
 <script>
 import RecipePreview from './RecipePreview.vue'
-import RecipeDetails from './RecipeDetails.vue'
+import RecipeDetails from '../views/RecipeDetails.vue'
 import { RouterLink } from 'vue-router'
 import curryImage from "../assets/images/curry.jpg"
 

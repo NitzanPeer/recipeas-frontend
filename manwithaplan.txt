@@ -22,7 +22,6 @@ Recipe obj -
 
 
 TODO:
-* Convert RecipeEdit and RecipeDetails to views from cmps
 * i18n or just make everything Heb (if time permits)
 * Create and connect store (if needed)
 

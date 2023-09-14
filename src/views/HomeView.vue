@@ -8,9 +8,9 @@
 </template>
 
 <script>
-import RecipeDetails from '../components/RecipeDetails.vue'
 import RecipeList from '../components/RecipeList.vue'
-import RecipeEdit from '../components/RecipeEdit.vue'
+import RecipeDetails from './RecipeDetails.vue'
+import RecipeEdit from './RecipeEdit.vue'
 import { recipeService } from '../services/recipe.service.local'
 import { eventBus } from '../services/event-bus.service'
 
