@@ -39,7 +39,6 @@ export default {
         }
     },
     created() {
-        eventBus.on('updateFilter', this.updateFilter)
     },
     methods: {
         onRemoveRecipe(id) {

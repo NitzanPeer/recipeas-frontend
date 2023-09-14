@@ -4,11 +4,11 @@
         <div>
             <br>
             <h4>רכיבים:</h4>
-            <ol>
+            <ul class="clean-list">
                 <li v-for="ingredient in recipe.ingredients">
                     {{ ingredient }}
                 </li>
-            </ol>
+            </ul>
             <br>
             <h4>אופן הכנה:</h4>
             <ol>
