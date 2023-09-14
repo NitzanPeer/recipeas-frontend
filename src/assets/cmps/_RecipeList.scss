@@ -1,7 +1,6 @@
 .preview-list-container ul {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
-    direction: rtl;
 
     .card {
         padding: 1rem;
@@ -31,6 +30,8 @@
         img {
             border-radius: 5px;
             max-width: 100%;
+            width: 18.5rem;
+            // height: 18.5rem;
         }
 
         .button-row {

@@ -23,6 +23,7 @@ export default {
                 description: '',
                 ingredients: [],
                 method: [],
+                imgURL: ''
             }
         }
     },
@@ -59,6 +60,7 @@ export default {
                 description: '',
                 ingredients: [],
                 method: [],
+                imgURL: ''
             }
         }
     },

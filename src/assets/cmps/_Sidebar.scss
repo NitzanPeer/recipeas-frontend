@@ -1,0 +1,13 @@
+.sidebar {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+
+    .categories {
+            li {
+                margin: 1rem 0 1rem 0;
+                cursor: pointer;
+            }
+
+    }
+}

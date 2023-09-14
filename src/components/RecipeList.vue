@@ -9,14 +9,13 @@
 
                 <div class="bottom-card-container">
                     <img src="../assets/images/lo-mien.jpg" />
+                    <!-- <img :src="recipe.imgURL" /> -->
                     <div class="button-row">
                         <RouterLink tag="button" class="btn-config1" :to="'/recipe/details/' + recipe.id">צפה</RouterLink>
                         <RouterLink tag="button" class="btn-config1" :to="'/recipe/edit/' + recipe.id">ערוך</RouterLink>
                         <button class="btn-config1" @click="onRemoveRecipe(recipe.id)">הסר</button>
                     </div>
                 </div>
-
-
             </li>
         </ul>
     </section>
@@ -26,7 +25,7 @@
 import RecipePreview from './RecipePreview.vue'
 import RecipeDetails from './RecipeDetails.vue'
 import { RouterLink } from 'vue-router'
-
+import curryImage from "../assets/images/curry.jpg"
 
 export default {
     props: {
@@ -34,6 +33,7 @@ export default {
     },
     data() {
         return {
+            curryImage: curryImage
         }
     },
     created() {

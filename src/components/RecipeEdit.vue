@@ -1,7 +1,7 @@
 <template>
     <div class="edit-container">
         <h2>{{ this.header }}</h2>
-        <form @submit.prevent="submitForm">
+        <form ref="myForm" @submit.prevent="submitForm">
 
             <div class="group">
                 <label>שם</label>
@@ -37,6 +37,7 @@
                 <div class="add-container">
                     <button class="add-input btn-config1" @click.stop.prevent="addStep">+</button>
                 </div>
+                <input type="file" @change="uploadImg">
             </div>
 
             <div class="button-row">
@@ -59,6 +60,7 @@ export default {
         return {
             recipe: {},
             isEditMode: false,
+            myFormData: null
         }
     },
     created() {
@@ -90,7 +92,7 @@ export default {
 
         },
         loadRecipe() {
-            if(this.isEditMode) {
+            if (this.isEditMode) {
                 const recipeId = this.$route.params.recipeId
                 this.recipe = recipeService.getById(recipeId)
             } else {
@@ -115,6 +117,16 @@ export default {
         removeStep(idx) {
             this.recipe.method.splice(idx, 1)
         },
+        // test:
+        uploadImg(ev) {
+            const file = ev.target.files[0]
+            const filePath = ev.target.value
+            if (filePath) {
+                const imgURL = filePath
+                console.log('imgURL', imgURL)
+                this.recipe.imgURL = imgURL
+            }
+        }
     },
     computed: {
         header() {
