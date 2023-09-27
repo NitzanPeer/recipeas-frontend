@@ -40,6 +40,8 @@ export default {
             this.recipes = recipeService.getRecipes(this.filterBy)
         },
         remove(id) {
+            const conf = confirm('להסיר את המתכון?')
+            if(!conf) return
             console.log('remove id', id)
             recipeService.removeRecipe(id)
             this.recipes = recipeService.getRecipes()
