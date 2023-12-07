@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import RecipeDetails from '../views/RecipeDetails.vue'
 import RecipeEdit from '../views/RecipeEdit.vue'
+import About from '../views/About.vue'
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -27,8 +28,10 @@ const router = createRouter({
             component: RecipeEdit
         },
         {
-            // path: '/about',
-            // name: 'about',
+            path: '/about',
+            name: 'about',
+            component: About
+
             // why do we need the anon func here?
             // component: () => import('../views/AboutView.vue')
         }

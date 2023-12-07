@@ -9,7 +9,7 @@
                     <RouterLink to="">קטגוריות</RouterLink>
                 </li>
                 <li>
-                    <RouterLink to="">עליי</RouterLink>
+                    <RouterLink to="/about">עליי</RouterLink>
                 </li>
             </ul>
             <div class="search-container">

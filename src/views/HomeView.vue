@@ -11,6 +11,7 @@
 import RecipeList from '../components/RecipeList.vue'
 import RecipeDetails from './RecipeDetails.vue'
 import RecipeEdit from './RecipeEdit.vue'
+import About from './About.vue'
 import { recipeService } from '../services/recipe.service.local'
 import { eventBus } from '../services/event-bus.service'
 
@@ -67,6 +68,7 @@ export default {
         RecipeList,
         RecipeEdit,
         RecipeDetails,
+        About,
     }
 }
 
