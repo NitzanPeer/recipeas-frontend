@@ -2,8 +2,8 @@ export const SHOW_MSG = 'show-msg'
 
 class EventBusError extends Error {
     constructor(message) {
-      super(message);
-      this.name = "EventBusError";
+      super(message)
+      this.name = "EventBusError"
     }
 }
 

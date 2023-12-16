@@ -11,7 +11,7 @@ export const recipeService = {
     removeRecipe
 }
 
-async function getRecipes(filterBy = { txt: '' }) {
+async function getRecipes(filterBy = { txt: '', tags: [] }) {
     try {
         const response = await fetch(`http://127.0.0.1:3030/recipes`)
         if (!response.ok) {
@@ -22,7 +22,10 @@ async function getRecipes(filterBy = { txt: '' }) {
 
         if (recipes && recipes.length) {
             return recipes.filter(recipe => {
-                return recipe.title.includes(filterBy.txt)
+                return (
+                    recipe.title.includes(filterBy.txt) &&
+                    filterBy.tags.every(tag => recipe.tags.includes(tag))
+                )
             })
         } else {
             return recipes

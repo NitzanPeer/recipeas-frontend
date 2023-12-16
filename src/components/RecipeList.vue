@@ -1,5 +1,6 @@
 <template>
     <section class="preview-list-container">
+        <!-- <h3 >{{ recipeCounter }}</h3> -->
         <ul v-if="recipes.length" class="recipe-list clean-list">
             <li v-for="(recipe, idx) in this.recipes" :class="`card recipe-${recipe._id}`" key="recipe._id">
                 <div class="upper-card-container">
@@ -34,8 +35,9 @@ export default {
     data() {
         return {
             filterBy: {
-                txt: ''
-            }
+                txt: '',
+                tags: []
+            },
         }
     },
     created() {

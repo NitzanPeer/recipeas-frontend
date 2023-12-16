@@ -1,4 +1,7 @@
 TODO:
+
+BUGS:
+
 1. Delete works but displays an error -
     "[Violation] 'click' handler took 845ms"
 
@@ -6,6 +9,8 @@ TODO:
     "Error updating recipe: SyntaxError: Unexpected end of JSON input at Object.updateRecipe"
     also:
     "VM115744:1 Uncaught (in promise) SyntaxError: Unexpected end of JSON input"
+
+3. Txt search bug - on complete deletion of search - doesn't refresh results to "all"
 
 
 Understand:

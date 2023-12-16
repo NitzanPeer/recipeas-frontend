@@ -1,7 +1,10 @@
 <template>
     <section class="home-container">
         <main>
-            <RouterLink class="btn-config1 add-recipe-btn" tag="button" :to="'/recipe/add/'">הוסף מתכון חדש</RouterLink>
+            <div class="header-container">
+                <h3>{{ recipeCounter }}</h3>
+                <RouterLink class="btn-config1 add-recipe-btn" tag="button" :to="'/recipe/add/'">הוסף מתכון חדש</RouterLink>
+            </div>
             <RecipeList @remove="remove" @edit="edit" :recipes="recipes" />
         </main>
     </section>
@@ -20,7 +23,8 @@ export default {
         return {
             recipes: [],
             filterBy: {
-                txt: ''
+                txt: '',
+                tags: []
             },
             recipeToEdit: {
                 title: '',
@@ -28,7 +32,7 @@ export default {
                 ingredients: [],
                 method: [],
                 imgURL: ''
-            }
+            },
         }
     },
     async created() {
@@ -60,8 +64,14 @@ export default {
             }
         },
         updateFilter(newFilter) {
-            this.filterBy = newFilter
+            if(newFilter.txt) this.filterBy.txt = newFilter.txt
+            if(newFilter.tags) this.filterBy.tags = [...newFilter.tags]
             this.getRecipes()
+        }
+    },
+    computed: {
+        recipeCounter() {
+            return (this.recipes?.length > 0) ? `נמצאו ${this.recipes?.length} מתכונים` : 'לא נמצאו מתכונים'
         }
     },
     components: {
