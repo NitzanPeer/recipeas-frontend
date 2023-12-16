@@ -1,7 +1,7 @@
 <template>
     <section class="preview-list-container">
         <ul v-if="recipes.length" class="recipe-list clean-list">
-            <li v-for="(recipe, idx) in this.recipes" :class="`card recipe-${recipe.id}`" key="recipe.id">
+            <li v-for="(recipe, idx) in this.recipes" :class="`card recipe-${recipe._id}`" key="recipe._id">
                 <div class="upper-card-container">
                     <h4>{{ recipe.title }}</h4>
                     <p>{{ recipe.description }}</p>
@@ -11,9 +11,9 @@
                     <img src="../assets/images/lo-mien.jpg" />
                     <!-- <img :src="recipe.imgURL" /> -->
                     <div class="button-row">
-                        <RouterLink tag="button" class="btn-config1" :to="'/recipe/details/' + recipe.id">צפה</RouterLink>
-                        <RouterLink tag="button" class="btn-config1" :to="'/recipe/edit/' + recipe.id">ערוך</RouterLink>
-                        <button class="btn-config1" @click="onRemoveRecipe(recipe.id)">הסר</button>
+                        <RouterLink tag="button" class="btn-config1" :to="'/recipe/details/' + recipe._id">צפה</RouterLink>
+                        <RouterLink tag="button" class="btn-config1" :to="'/recipe/edit/' + recipe._id">ערוך</RouterLink>
+                        <button class="btn-config1" @click="onRemoveRecipe(recipe._id)">הסר</button>
                     </div>
                 </div>
             </li>

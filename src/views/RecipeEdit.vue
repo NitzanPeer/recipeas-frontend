@@ -16,7 +16,7 @@
             <div class="group">
                 <label>רכיבים</label>
                 <ul>
-                    <li v-if="recipe.ingredients.length" v-for="(ingredient, idx) in recipe.ingredients">
+                    <li v-if="recipe.ingredients?.length" v-for="(ingredient, idx) in recipe.ingredients">
                         <input class="ingridient-input" type="text" v-model="recipe.ingredients[idx]">
                         <button class="remove-input btn-config1" @click.stop.prevent="removeIngridient(idx)">X</button>
                     </li>
@@ -29,7 +29,7 @@
             <div class="group">
                 <label>אופן הכנה</label>
                 <ol>
-                    <li v-if="recipe.method.length" v-for="(step, idx) in recipe.method">
+                    <li v-if="recipe.method?.length" v-for="(step, idx) in recipe.method">
                         <input class="step-input" type="text" v-model="recipe.method[idx]">
                         <button class="remove-input btn-config1" @click.stop.prevent="removeStep(idx)">X</button>
                     </li>
@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { recipeService } from '../services/recipe.service.local'
+import { recipeService } from '../services/recipe.service'
 import { eventBus } from '../services/event-bus.service'
 
 export default {
@@ -63,11 +63,11 @@ export default {
             myFormData: null
         }
     },
-    created() {
+    async created() {
         if (this.$route.params.recipeId) {
             this.isEditMode = true
         }
-        this.loadRecipe()
+        await this.loadRecipe()
     },
     // watch: {
     //     recipeToEdit: {
@@ -80,21 +80,23 @@ export default {
     // },
     methods: {
         submitForm() {
-            console.log(this.recipe)
-            if (this.recipe.id) {
+            if (this.recipe._id) {
                 recipeService.updateRecipe(this.recipe)
             } else {
                 recipeService.addRecipe(this.recipe)
             }
 
-            eventBus.emit('recipeChanged', this.recipe.id)
+            eventBus.emit('recipeChanged', this.recipe._id)
             this.$router.push("/")
 
         },
-        loadRecipe() {
+        async loadRecipe() {
             if (this.isEditMode) {
                 const recipeId = this.$route.params.recipeId
-                this.recipe = recipeService.getById(recipeId)
+                this.recipe = await recipeService.getById(recipeId)
+                console.log("🚀 ~ file: RecipeEdit.vue:97 ~ loadRecipe ~ this.recipe:", this.recipe)
+
+
             } else {
                 this.recipe = {
                     title: '',

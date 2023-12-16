@@ -25,7 +25,7 @@
 </template>
 <script>
 
-import { recipeService } from '../services/recipe.service.local'
+import { recipeService } from '../services/recipe.service'
 
 export default {
 
@@ -34,13 +34,17 @@ export default {
             recipe: {}
         }
     },
-    created() {
-        this.loadRecipe()
+    async created() {
+        await this.loadRecipe()
     },
+    // async mounted() {
+    //     await this.loadRecipe()
+    // },
     methods: {
-        loadRecipe() {
+        async loadRecipe() {
             const recipeId = this.$route.params.recipeId
-            this.recipe = recipeService.getById(recipeId)
+            this.recipe = await recipeService.getById(recipeId)
+            console.log("🚀 ~ file: RecipeDetails.vue:47 ~ loadRecipe ~ this.recipe:", this.recipe)
         },
     },
 }

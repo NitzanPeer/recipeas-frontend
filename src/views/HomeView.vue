@@ -12,7 +12,7 @@ import RecipeList from '../components/RecipeList.vue'
 import RecipeDetails from './RecipeDetails.vue'
 import RecipeEdit from './RecipeEdit.vue'
 import About from './About.vue'
-import { recipeService } from '../services/recipe.service.local'
+import { recipeService } from '../services/recipe.service.js'
 import { eventBus } from '../services/event-bus.service'
 
 export default {
@@ -31,21 +31,21 @@ export default {
             }
         }
     },
-    created() {
-        this.getRecipes()
+    async created() {
+        await this.getRecipes()
         eventBus.on('recipeChanged', this.getRecipes)
         eventBus.on('updateFilter', this.updateFilter)
     },
     methods: {
-        getRecipes() {
-            this.recipes = recipeService.getRecipes(this.filterBy)
+        async getRecipes() {
+            this.recipes = await recipeService.getRecipes(this.filterBy)
         },
-        remove(id) {
+        async remove(id) {
             const conf = confirm('להסיר את המתכון?')
-            if(!conf) return
+            if (!conf) return
             console.log('remove id', id)
-            recipeService.removeRecipe(id)
-            this.recipes = recipeService.getRecipes()
+            await recipeService.removeRecipe(id)
+            this.recipes = await recipeService.getRecipes(this.filterBy)
         },
         edit(recipe) {
             this.recipeToEdit = recipe
