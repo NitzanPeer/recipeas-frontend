@@ -5,7 +5,7 @@
                 <h3>{{ recipeCounter }}</h3>
                 <RouterLink class="btn-config1 add-recipe-btn" tag="button" :to="'/recipe/add/'">הוסף מתכון חדש</RouterLink>
             </div>
-            <RecipeList @remove="remove" @edit="edit" :recipes="recipes" />
+            <RecipeList @remove="remove" @edit="edit" :recipes="this.recipes" />
         </main>
     </section>
 </template>
@@ -15,8 +15,10 @@ import RecipeList from '../components/RecipeList.vue'
 import RecipeDetails from './RecipeDetails.vue'
 import RecipeEdit from './RecipeEdit.vue'
 import About from './About.vue'
-import { recipeService } from '../services/recipe.service.js'
 import { eventBus } from '../services/event-bus.service'
+
+import { mapGetters, mapActions } from 'vuex'
+
 
 export default {
     data() {
@@ -36,20 +38,16 @@ export default {
         }
     },
     async created() {
-        await this.getRecipes()
-        eventBus.on('recipeChanged', this.getRecipes)
-        eventBus.on('updateFilter', this.updateFilter)
+        await this.fetchRecipes()
     },
     methods: {
-        async getRecipes() {
-            this.recipes = await recipeService.getRecipes(this.filterBy)
-        },
+        ...mapActions(['fetchRecipes', 'removeRecipe']),
+
         async remove(id) {
             const conf = confirm('להסיר את המתכון?')
             if (!conf) return
             console.log('remove id', id)
-            await recipeService.removeRecipe(id)
-            this.recipes = await recipeService.getRecipes(this.filterBy)
+            await this.removeRecipe(id)
         },
         edit(recipe) {
             this.recipeToEdit = recipe
@@ -63,15 +61,16 @@ export default {
                 imgURL: ''
             }
         },
-        updateFilter(newFilter) {
-            if(newFilter.txt) this.filterBy.txt = newFilter.txt
-            if(newFilter.tags) this.filterBy.tags = [...newFilter.tags]
-            this.getRecipes()
+        async updateFilter(newFilter) {
+            console.log("🚀 ~ file: HomeView.vue:71 ~ updateFilter ~ newFilter:", newFilter)
+            if(newFilter.txt) await this.updateFilter({ txt: newFilter.txt })
         }
     },
     computed: {
+        ...mapGetters(['getRecipes', 'getFilteredRecipes']),
+
         recipeCounter() {
-            return (this.recipes?.length > 0) ? `נמצאו ${this.recipes?.length} מתכונים` : 'לא נמצאו מתכונים'
+            return (this.getFilteredRecipes?.length > 0) ? `נמצאו ${this.getFilteredRecipes?.length} מתכונים` : 'לא נמצאו מתכונים'
         }
     },
     components: {

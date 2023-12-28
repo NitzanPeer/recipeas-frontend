@@ -50,6 +50,7 @@
 
 <script>
 import { recipeService } from '../services/recipe.service'
+import { mapGetters, mapActions } from 'vuex'
 import { eventBus } from '../services/event-bus.service'
 
 export default {
@@ -79,14 +80,16 @@ export default {
     //     },
     // },
     methods: {
-        submitForm() {
-            if (this.recipe._id) {
-                recipeService.updateRecipe(this.recipe)
+        ...mapActions(['addRecipe', 'updateRecipe']),
+
+        async submitForm() {
+            if (this.recipe?._id) {
+                await this.updateRecipe(this.recipe)
             } else {
-                recipeService.addRecipe(this.recipe)
+                await this.addRecipe(this.recipe)
             }
 
-            eventBus.emit('recipeChanged', this.recipe._id)
+            // eventBus.emit('recipeChanged', this.recipe._id)
             this.$router.push("/")
 
         },
@@ -131,6 +134,7 @@ export default {
         }
     },
     computed: {
+
         header() {
             const header = this.isEditMode ? 'עריכה' : 'הוספה'
             return header

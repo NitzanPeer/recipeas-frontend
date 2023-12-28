@@ -1,8 +1,6 @@
 
 // const ? = 'http://127.0.0.1:3030/'
 
-const STORAGE_KEY = 'recipeDB'
-
 export const recipeService = {
     getRecipes,
     getById,
@@ -11,6 +9,7 @@ export const recipeService = {
     removeRecipe
 }
 
+// this should be used to fetch the recipes from mongo once
 async function getRecipes(filterBy = { txt: '', tags: [] }) {
     try {
         const response = await fetch(`http://127.0.0.1:3030/recipes`)
@@ -20,16 +19,18 @@ async function getRecipes(filterBy = { txt: '', tags: [] }) {
 
         const recipes = await response.json()
 
-        if (recipes && recipes.length) {
-            return recipes.filter(recipe => {
-                return (
-                    recipe.title.includes(filterBy.txt) &&
-                    filterBy.tags.every(tag => recipe.tags.includes(tag))
-                )
-            })
-        } else {
-            return recipes
-        }
+        if (recipes && recipes.length) return recipes
+
+        // if (recipes && recipes.length) {
+        //     return recipes.filter(recipe => {
+        //         return (
+        //             recipe.title.includes(filterBy.txt) &&
+        //             filterBy.tags.every(tag => recipe.tags.includes(tag))
+        //         )
+        //     })
+        // } else {
+        //     return recipes
+        // }
     } catch (error) {
         console.error('Error fetching recipes:', error)
         throw error
@@ -84,8 +85,6 @@ async function updateRecipe(recipe) {
         if (!response.ok) {
             throw new Error('Failed to update recipe')
         }
-        console.log('response.json', response.json)
-        return await response.json()
     } catch (error) {
         console.error('Error updating recipe:', error)
         throw error

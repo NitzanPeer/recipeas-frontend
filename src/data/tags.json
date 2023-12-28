@@ -1,1 +1,18 @@
-["זריזים", "מרקים", "אסיאתי", "איטלקי"]
+[
+    {
+        "title": "זריזים",
+        "isActive": false
+    },
+    {
+        "title":"מרקים",
+        "isActive": false
+    },
+    {
+        "title":"אסיאתי",
+        "isActive": false
+    },
+    {
+        "title":"איטלקי",
+        "isActive": false
+    }
+]

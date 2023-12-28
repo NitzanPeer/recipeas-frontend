@@ -2,11 +2,11 @@
     <section class="sidebar">
         <nav class="sidebar-navbar">
             <!-- <ul class="categories clean-list" v-for="(tag, idx) in tags" :key="tag"> -->
-            <ul class="tags clean-list" v-for="tag in tags" :key="tag">
+            <ul class="tags clean-list" v-for="tag in tags" :class="`tag-${tag._id}`" :key="tag.title">
                 <li>
-                    <button class="tag-btn" :class="{ 'active-tag-btn': isTagActive(tag) }" @click="toggleTag(tag)">
-                        {{ tag }}
-                        <span class="delete-tag-btn" @click="deleteTag(tag)">
+                    <button class="tag-btn" :class="{ 'active-tag-btn': tag.isActive }" @click="toggleTag(tag)">
+                        <h4>{{ tag.title }}</h4>
+                        <span class="delete-tag-btn" @click="deleteTag(tag._id)">
                             <!-- <img src="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
                                 alt=""> -->
                             <svg class="trash-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -29,41 +29,48 @@
 <script>
 
 import { eventBus } from '../services/event-bus.service.js'
+import { tagService } from '../services/tag.service.js'
 import { svgService } from '../services/svg.service.js'
 
 
 export default {
     data() {
         return {
-            tags: ['זריזים', 'מרקים', 'אסיאתי', 'איטלקי'],
+            tags: [],
             activeTags: [],
         }
     },
-    created() {
+    async created() {
+        this.tags = await tagService.getTags()
     },
     methods: {
         toggleTag(tag) {
-            const idx = this.activeTags.indexOf(tag)
-            if (idx !== -1) {
-                this.activeTags.splice(idx, 1)
-            } else {
-                this.activeTags.push(tag)
+            // const idx = this.activeTags.findIndex(obj => obj._id === tag._id)
+            // if (idx !== -1) {
+            //     this.activeTags.splice(idx, 1)
+            // } else {
+            //     this.activeTags.push(tag)
+            // }
+            tag.isActive = !tag.isActive
+            if (tag.isActive) {
+                this.activeTags.push(tag.title)
             }
             eventBus.emit('updateFilter', { tags: this.activeTags })
         },
-        isTagActive(tag) {
-            return this.activeTags.includes(tag)
+        async getTags() {
+            this.tags = await tagService.getTags()
         },
-        addTag() {
-            const tag = prompt('מה שם הקטגוריה החדשה?')
-            if (tag) this.tags.push(tag)
+        async addTag() {
+            const tagTitle = prompt('מה שם הקטגוריה החדשה?')
+            if (tagTitle) this.tags.push({ title: tagTitle })
         },
-        deleteTag(tag) {
-            if (confirm('למחוק את הקטגוריה?')) {
-                const idx = this.activeTags.indexOf(tag)
-                this.tags.splice(idx, 1)
-            }
-        }
+        async deleteTag(id) {
+            const conf = confirm('להסיר את הקטגוריה?')
+            if (!conf) return
+            console.log('remove id', id)
+            await tagService.removeTag(id)
+            this.tags = await tagService.getTags(this.filterBy)
+        },
     },
     computed: {
     },

@@ -1,8 +1,7 @@
 <template>
     <section class="preview-list-container">
-        <!-- <h3 >{{ recipeCounter }}</h3> -->
-        <ul v-if="recipes.length" class="recipe-list clean-list">
-            <li v-for="(recipe, idx) in this.recipes" :class="`card recipe-${recipe._id}`" key="recipe._id">
+        <ul v-if="this.getFilteredRecipes.length" class="recipe-list clean-list">
+            <li v-for="(recipe, idx) in this.getFilteredRecipes" :class="`card recipe-${recipe._id}`">
                 <div class="upper-card-container">
                     <h4>{{ recipe.title }}</h4>
                     <p>{{ recipe.description }}</p>
@@ -26,18 +25,17 @@
 import RecipePreview from './RecipePreview.vue'
 import RecipeDetails from '../views/RecipeDetails.vue'
 import { RouterLink } from 'vue-router'
-import { eventBus } from '../services/event-bus.service'
+import { mapGetters, mapActions } from 'vuex'
+
 
 export default {
-    props: {
-        recipes: { type: Array }
-    },
     data() {
         return {
             filterBy: {
                 txt: '',
                 tags: []
             },
+            recipes: []
         }
     },
     created() {
@@ -52,6 +50,9 @@ export default {
         onViewRecipe(recipe) {
             this.$emit('view', recipe)
         },
+    },
+    computed: {
+        ...mapGetters(['getFilteredRecipes']),
     },
     components: {
         RecipePreview,

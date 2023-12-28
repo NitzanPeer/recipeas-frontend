@@ -5,9 +5,9 @@
                 <li>
                     <RouterLink to="/">דף הבית</RouterLink>
                 </li>
-                <li>
+                <!-- <li>
                     <RouterLink to="">קטגוריות</RouterLink>
-                </li>
+                </li> -->
                 <li>
                     <RouterLink to="/about">עליי</RouterLink>
                 </li>
@@ -26,18 +26,20 @@
 
 <script>
 
-import { eventBus } from '../services/event-bus.service'
+import { mapActions } from 'vuex'
 
 export default {
     data() {
         return {
             searchText: '',
-            recipes: []
         }
     },
     methods: {
+        ...mapActions(['updateFilter']),
+
         onInput() {
-            eventBus.emit('updateFilter', { txt: this.searchText })
+            if (this.searchText.trim() === '') this.updateFilter({ txt: ''})
+            else this.updateFilter({ txt: this.searchText })
         }
     },
     computed: {
