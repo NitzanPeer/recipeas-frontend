@@ -61,7 +61,6 @@ export default {
             }
         },
         async updateFilter(newFilter) {
-            console.log("🚀 ~ file: Recipes.vue:64 ~ updateFilter ~ newFilter:", newFilter)
             if(newFilter.txt) await this.updateFilter({ txt: newFilter.txt })
         }
     },

@@ -79,7 +79,6 @@ async function updateTag(tag) {
         if (!response.ok) {
             throw new Error('Failed to update tag')
         }
-        console.log('response.json', response.json)
         return await response.json()
     } catch (error) {
         console.error('Error updating tag:', error)

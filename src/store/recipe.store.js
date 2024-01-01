@@ -32,7 +32,6 @@ export const recipeStore = {
     },
     actions: {
         async fetchRecipes({ commit }, filterBy = { txt: '' }) {
-            console.log("🚀 ~ file: recipe.store.js:46 ~ fetchRecipes ~ filterBy:", filterBy)
             try {
                 const recipes = await recipeService.getRecipes()
                 commit('SET_RECIPES', recipes)
@@ -79,7 +78,6 @@ export const recipeStore = {
                     return recipe.title.includes(filterBy.txt)
                 })
                 commit('UPDATE_FILTERED_RECIPES', filteredRecipes)
-                console.log("🚀 ~ file: recipe.store.js:95 ~ filteredRecipes ~ filteredRecipes:", filteredRecipes)
             } catch (error) {
                 console.error('Error updating filtered recipes:', error)
                 throw error

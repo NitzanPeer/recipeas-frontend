@@ -44,7 +44,6 @@ export default {
         async loadRecipe() {
             const recipeId = this.$route.params.recipeId
             this.recipe = await recipeService.getById(recipeId)
-            console.log("🚀 ~ file: RecipeDetails.vue:47 ~ loadRecipe ~ this.recipe:", this.recipe)
         },
     },
 }

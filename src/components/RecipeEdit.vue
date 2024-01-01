@@ -95,9 +95,6 @@ export default {
             if (this.isEditMode) {
                 const recipeId = this.$route.params.recipeId
                 this.recipe = await recipeService.getById(recipeId)
-                console.log("🚀 ~ file: RecipeEdit.vue:97 ~ loadRecipe ~ this.recipe:", this.recipe)
-
-
             } else {
                 this.recipe = {
                     title: '',
