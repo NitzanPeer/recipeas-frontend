@@ -88,8 +88,6 @@ export default {
             } else {
                 await this.addRecipe(this.recipe)
             }
-
-            // eventBus.emit('recipeChanged', this.recipe._id)
             this.$router.push("/")
 
         },

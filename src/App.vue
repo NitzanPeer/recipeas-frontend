@@ -4,10 +4,14 @@
 			<AppHeader />
 		</div>
 		<div class="main-content">
-			<RouterView />
-		</div>
-		<div class="sidebar">
-			<Sidebar />
+			<div class="sidebar">
+				<Sidebar />
+			</div>
+			<div class="router">
+				<RouterView />
+			</div>
+			<!-- <div class="sidebar" v-if="isRecipesView"> -->
+
 		</div>
 	</div>
 </template>
@@ -19,6 +23,8 @@ import Sidebar from './components/Sidebar.vue'
 
 
 const route = useRoute()
-const isHomeView = route.name === 'home'
+// const isHomeView = route.name === 'home'
+const isRecipesView = route.name === 'recipes'
+
 console.log('route.name', route.name)
 </script>

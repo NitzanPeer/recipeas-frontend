@@ -1,4 +1,4 @@
-.home-container {
+.recipes-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -11,7 +11,7 @@
     }
 }
 
-.header-container {
+.card-header-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
 

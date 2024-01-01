@@ -7,7 +7,7 @@ details cmp
 list view
 recipe view
 
-Home view:
+Recipes view:
 ---------
 list of current recipes, each including title, short description, pic, link to recipe view
 add recipe btn -> popup of add recipe form (view)

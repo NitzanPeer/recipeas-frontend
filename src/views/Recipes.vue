@@ -1,7 +1,7 @@
 <template>
-    <section class="home-container">
+    <section class="recipes-container">
         <main>
-            <div class="header-container">
+            <div class="card-header-container">
                 <h3>{{ recipeCounter }}</h3>
                 <RouterLink class="btn-config1 add-recipe-btn" tag="button" :to="'/recipe/add/'">הוסף מתכון חדש</RouterLink>
             </div>
@@ -12,10 +12,9 @@
 
 <script>
 import RecipeList from '../components/RecipeList.vue'
-import RecipeDetails from './RecipeDetails.vue'
-import RecipeEdit from './RecipeEdit.vue'
+import RecipeDetails from '../components/RecipeDetails.vue'
+import RecipeEdit from '../components/RecipeEdit.vue'
 import About from './About.vue'
-import { eventBus } from '../services/event-bus.service'
 
 import { mapGetters, mapActions } from 'vuex'
 
@@ -62,7 +61,7 @@ export default {
             }
         },
         async updateFilter(newFilter) {
-            console.log("🚀 ~ file: HomeView.vue:71 ~ updateFilter ~ newFilter:", newFilter)
+            console.log("🚀 ~ file: Recipes.vue:64 ~ updateFilter ~ newFilter:", newFilter)
             if(newFilter.txt) await this.updateFilter({ txt: newFilter.txt })
         }
     },
