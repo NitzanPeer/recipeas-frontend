@@ -1,9 +1,8 @@
 <template>
-    <div class="about">
+    <section class="about-container">
         <h2>אז מי אני?</h2>
-        <!-- <p>{{ paragraphHeb }}</p> -->
         <div v-html="formattedParagraphs"></div>
-    </div>
+    </section>
 </template>
 
 <script>

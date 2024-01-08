@@ -1,19 +1,16 @@
 <template>
-	<div class="layout">
 		<div class="header">
 			<AppHeader />
 		</div>
 		<div class="main-content">
+			<!-- <div class="sidebar" v-if="isRecipesView"> -->
 			<div class="sidebar">
 				<Sidebar />
 			</div>
 			<div class="router">
 				<RouterView />
 			</div>
-			<!-- <div class="sidebar" v-if="isRecipesView"> -->
-
 		</div>
-	</div>
 </template>
 
 <script setup>

@@ -1,13 +1,9 @@
 <template>
-    <section class="header">
         <nav class="header-navbar">
-            <ul class="router-links clean-list">
+            <ul class="nav-links clean-list">
                 <li>
-                    <RouterLink to="/">דף הבית</RouterLink>
+                    <RouterLink to="/">מתכונים</RouterLink>
                 </li>
-                <!-- <li>
-                    <RouterLink to="">קטגוריות</RouterLink>
-                </li> -->
                 <li>
                     <RouterLink to="/about">עליי</RouterLink>
                 </li>
@@ -17,11 +13,10 @@
                 <input type="text" v-model="searchText" @input="onInput" placeholder="חפשו מתכון">
             </div>
 
-            <div class="left-side-container">
-                <h1>שמחים שחזרת "משתמש/ת"</h1>
+            <div class="brand-title">
+                ReciPeas
             </div>
         </nav>
-    </section>
 </template>
 
 <script>

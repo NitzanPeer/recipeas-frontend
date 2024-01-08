@@ -1,3 +1,8 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 *,
 *::before,
 *::after {
@@ -22,8 +27,9 @@ body {
     background-color: #061424;
     color: white;
     font-size: 1.125rem;
-    direction: rtl // hack to fix mobile view:
-        // overflow: hidden;
+    direction: rtl;
+    // hack to fix mobile view:
+    // overflow: hidden;
 }
 
 // for google icons
@@ -40,11 +46,11 @@ a {
 }
 
 .btn-config1 {
+    cursor: pointer;
     border-radius: 6px;
     padding: 0.5rem;
     background-color: rgb(72, 255, 0);
     border-style: none;
-    cursor: pointer;
     font-size: 1rem;
     font-family: sans-serif;
     color: black;
@@ -57,23 +63,7 @@ a {
     }
 }
 
-// notice - rtl on body changes the grid
-.layout {
-    display: grid;
-    height: 100vh;
-    grid-template-columns: 0.2fr auto;
-    grid-template-rows: auto;
-    grid-template-areas:
-        "header header"
-        "main-content main-content";
-}
-
-.header {
-    grid-area: header;
-}
-
 .main-content {
-    grid-area: main-content;
     display: grid;
     height: 100vh;
     grid-template-columns: 0.2fr auto;
@@ -84,9 +74,29 @@ a {
 
 .sidebar {
     grid-area: sidebar;
-    background-color: gray;
 }
 
 .router {
     grid-area: router;
+}
+
+
+
+@media screen and (max-width: 768px) {
+    .main-content {
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: auto auto;
+        grid-template-areas:
+            "sidebar"
+            "router";
+    }
+
+    .sidebar {
+        grid-area: sidebar;
+    }
+
+    .router {
+        grid-area: router;
+    }
 }

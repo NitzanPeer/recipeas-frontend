@@ -1,18 +1,29 @@
 .sidebar {
     display: flex;
-    justify-content: center;
-    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: #555;
 
-    .tags {
+    .tag-list {
+
         li {
-            margin: 1rem 0 1rem 0;
-            cursor: pointer;
+            margin-block-end: 0.5rem;
+
+            padding: 10px;
+            margin: 0 auto;
+
+            button {
+                display: block;
+                padding: 10px;
+                width: 100%;
+            }
         }
+
+
     }
 
     button {
         cursor: pointer;
-        width: 100%;
         border-radius: 0.375rem;
         padding: 0.625rem;
         font-size: 1.125rem;
@@ -23,6 +34,8 @@
     }
 
     .add-tag-btn {
+        margin-block-start: 0.6rem;
+        margin-block-end: 0.6rem;
         background-color: rgb(228, 139, 6);
     }
 
@@ -37,13 +50,20 @@
         opacity: 1;
     }
 
-
-
     .material-symbols-outlined {
         font-variation-settings:
             'FILL' 0,
             'wght' 400,
             'GRAD' 0,
             'opsz' 24
+    }
+
+    @media screen and (max-width: 768px) {
+
+        .tag-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr));
+            width: 100%;
+        }
     }
 }

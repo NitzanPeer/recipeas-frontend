@@ -3,7 +3,7 @@
         <main>
             <div class="card-header-container">
                 <h3>{{ recipeCounter }}</h3>
-                <RouterLink class="btn-config1 add-recipe-btn" tag="button" :to="'/recipe/add/'">הוסף מתכון חדש</RouterLink>
+                <RouterLink class="btn-config1 add-recipe-btn" tag="button" :to="'/recipe/add/'">הוסף מתכון</RouterLink>
             </div>
             <RecipeList @remove="remove" @edit="edit" :recipes="this.recipes" />
         </main>
