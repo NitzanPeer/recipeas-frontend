@@ -5,7 +5,7 @@
                 <h3>{{ recipeCounter }}</h3>
                 <RouterLink class="btn-config1 add-recipe-btn" tag="button" :to="'/recipe/add/'">הוסף מתכון</RouterLink>
             </div>
-            <RecipeList @remove="remove" @edit="edit" :recipes="this.recipes" />
+            <RecipeList @remove="remove" @edit="edit"/>
         </main>
     </section>
 </template>
@@ -22,11 +22,6 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
     data() {
         return {
-            recipes: [],
-            filterBy: {
-                txt: '',
-                tags: []
-            },
             recipeToEdit: {
                 title: '',
                 description: '',
@@ -43,10 +38,11 @@ export default {
         ...mapActions(['fetchRecipes', 'removeRecipe']),
 
         async remove(id) {
-            const conf = confirm('להסיר את המתכון?')
-            if (!conf) return
-            console.log('remove id', id)
-            await this.removeRecipe(id)
+            const confirmed = confirm('להסיר את המתכון?')
+            if (confirmed) {
+                console.log('remove id', id)
+                await this.removeRecipe(id)
+            }
         },
         edit(recipe) {
             this.recipeToEdit = recipe
@@ -60,9 +56,6 @@ export default {
                 imgURL: ''
             }
         },
-        async updateFilter(newFilter) {
-            if(newFilter.txt) await this.updateFilter({ txt: newFilter.txt })
-        }
     },
     computed: {
         ...mapGetters(['getRecipes', 'getFilteredRecipes']),

@@ -1,6 +1,7 @@
 import Vuex from 'vuex'
 
 import { recipeStore } from './recipe.store.js'
+import { tagStore } from './tag.store.js'
 
 export const store = Vuex.createStore({
     strict: true,
@@ -9,5 +10,6 @@ export const store = Vuex.createStore({
     actions: {},
     modules: {
         recipeStore,
+        tagStore,
     },
 })

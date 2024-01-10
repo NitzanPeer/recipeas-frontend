@@ -1,16 +1,16 @@
 <template>
-		<div class="header">
-			<AppHeader />
+	<div class="header">
+		<AppHeader />
+	</div>
+	<div class="main-content">
+		<div class="sidebar" v-if="isRecipesRoute">
+			<!-- <div class="sidebar"> -->
+			<Sidebar />
 		</div>
-		<div class="main-content">
-			<!-- <div class="sidebar" v-if="isRecipesView"> -->
-			<div class="sidebar">
-				<Sidebar />
-			</div>
-			<div class="router">
-				<RouterView />
-			</div>
+		<div class="router">
+			<RouterView />
 		</div>
+	</div>
 </template>
 
 <script setup>
@@ -20,8 +20,17 @@ import Sidebar from './components/Sidebar.vue'
 
 
 const route = useRoute()
-// const isHomeView = route.name === 'home'
-const isRecipesView = route.name === 'recipes'
 
+let isRecipesRoute = null
+
+if (route.name === 'recipes' || route.name === undefined) {
+  isRecipesRoute = true
+} else {
+  isRecipesRoute = false
+}
+
+// const isRecipesRoute = route.name === 'recipes'
+// const isRecipesView = this.$route.name === 'recipes'
 console.log('route.name', route.name)
+
 </script>

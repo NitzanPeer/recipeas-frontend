@@ -5,7 +5,6 @@ export const recipeStore = {
         recipes: [],
         filterBy: {},
         filteredRecipes: [],
-        // tags: [],
     },
     mutations: {
         SET_RECIPES(state, recipes) {
@@ -24,7 +23,9 @@ export const recipeStore = {
             }
         },
         UPDATE_FILTERBY(state, filterBy) {
-            state.filterBy = filterBy
+            state.filterBy.txt = filterBy.txt
+            state.filterBy.tags = filterBy.tags
+            // state.filterBy = filterBy
         },
         UPDATE_FILTERED_RECIPES(state, filteredRecipes) {
             state.filteredRecipes = filteredRecipes
@@ -74,8 +75,15 @@ export const recipeStore = {
         async updateFilteredRecipes({ commit, state }) {
             try {
                 const { recipes, filterBy } = state
+
+                const searchText = filterBy.txt || ''
+                const searchTags = filterBy.tags || []
+
                 const filteredRecipes = recipes.filter(recipe => {
-                    return recipe.title.includes(filterBy.txt)
+                    const titleMatch = recipe.title.toLowerCase().includes(searchText.toLowerCase())
+                    const tagMatch = searchTags.length === 0 || searchTags.every(tag => recipe.tags.includes(tag))
+
+                    return titleMatch && tagMatch
                 })
                 commit('UPDATE_FILTERED_RECIPES', filteredRecipes)
             } catch (error) {

@@ -6,7 +6,7 @@ export const tagService = {
     removeTag
 }
 
-async function getTags(filterBy = { txt: '', tags: [] }) {
+async function getTags() {
     try {
         const response = await fetch(`http://127.0.0.1:3030/tags`)
         if (!response.ok) {
@@ -15,16 +15,8 @@ async function getTags(filterBy = { txt: '', tags: [] }) {
 
         const tags = await response.json()
 
-        if (tags && tags.length) {
-            return tags.filter(tag => {
-                return (
-                    tag.title.includes(filterBy.txt) &&
-                    filterBy.tags.every(tag => tag.tags.includes(tag))
-                )
-            })
-        } else {
-            return tags
-        }
+        return tags
+
     } catch (error) {
         console.error('Error fetching tags:', error)
         throw error
