@@ -18,11 +18,11 @@
                 <ul>
                     <li v-if="recipe.ingredients?.length" v-for="(ingredient, idx) in recipe.ingredients">
                         <input class="ingridient-input" type="text" v-model="recipe.ingredients[idx]">
-                        <button class="remove-input btn-config1" @click.stop.prevent="removeIngridient(idx)">X</button>
+                        <button class="remove-input btn-config1" title="הסרה" @click.stop.prevent="removeIngridient(idx)">X</button>
                     </li>
                 </ul>
                 <div class="add-container">
-                    <button class="add-input btn-config1" @click.stop.prevent="addIngridient">+</button>
+                    <button class="add-input btn-config1" title="הוספת רכיב" @click.stop.prevent="addIngridient">+</button>
                 </div>
             </div>
 
@@ -31,18 +31,35 @@
                 <ol>
                     <li v-if="recipe.method?.length" v-for="(step, idx) in recipe.method">
                         <input class="step-input" type="text" v-model="recipe.method[idx]">
-                        <button class="remove-input btn-config1" @click.stop.prevent="removeStep(idx)">X</button>
+                        <button class="remove-input btn-config1" title="הסרה" @click.stop.prevent="removeStep(idx)">X</button>
                     </li>
                 </ol>
                 <div class="add-container">
-                    <button class="add-input btn-config1" @click.stop.prevent="addStep">+</button>
+                    <button class="add-input btn-config1" title="הוספת שלב" @click.stop.prevent="addStep">+</button>
                 </div>
                 <!-- <input type="file" @change="uploadImg"> -->
             </div>
 
+            <!-- <div class="group">
+                <label>תגיות</label>
+                <ul>
+                    <li v-if="recipe.tags?.length" v-for="(tag, idx) in recipe.tags">
+                        <input class="tag-input" type="text" v-model="recipe.tags[idx]">
+                        <button class="remove-input btn-config1" @click.stop.prevent="removeTag(idx)">X</button>
+                    </li>
+                </ul>
+                <div class="add-container">
+                    <button class="add-input btn-config1" @click.stop.prevent="addTag">+</button>
+                </div>
+            </div> -->
+
             <div class="button-row">
-                <button class="btn-config1" type="submit">שמור</button>
-                <RouterLink class="btn-config1" tag="button" :to="'/'">סגור</RouterLink>
+                <button class="btn-config1" title="שמירה" type="submit">
+                    <font-awesome-icon :icon="['fas', 'floppy-disk']" />
+                </button>
+                <RouterLink class="btn-config1" title="חזרה לעמוד הבית" tag="button" :to="'/'">
+                    <font-awesome-icon :icon="['fas', 'arrow-left']" />
+                </RouterLink>
             </div>
         </form>
     </div>

@@ -2,6 +2,8 @@
     display: grid;
     justify-content: center;
     direction: rtl;
+    padding-right: 2.5%;
+    padding-left: 2.5%;
 
     button,
     a {
@@ -21,7 +23,6 @@
             button {
                 font-size: 1.25rem;
                 width: 3.2rem;
-                margin-block-start: 1.5rem;
             }
         }
     }
@@ -38,13 +39,13 @@
         }
     }
 
-    .btn.add-input {
+    .add-input {
         width: 3rem;
         font-size: 1.5rem;
     }
 
-    .btn.remove-input {
-        width: 2rem;
+    .remove-input {
+        margin-left: 0;
     }
 
     h2 {
@@ -57,17 +58,15 @@
         padding: 0.75rem;
         font-size: 1rem;
         font-family: sans-serif;
+        width: 100%;
     }
 
-    .ingridient-input {
-        width: 55rem;
-    }
-
-    .step-input {
-        width: 55rem;
+    input {
+        width: 100%;
     }
 
     li {
         direction: rtl;
+        display: flex;
     }
 }

@@ -72,6 +72,12 @@ a {
         "sidebar router";
 }
 
+.main-content.hide-sidebar {
+    grid-template-columns: auto;
+    grid-template-areas:
+        "router";
+}
+
 .sidebar {
     grid-area: sidebar;
 }

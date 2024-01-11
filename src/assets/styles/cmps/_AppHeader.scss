@@ -34,13 +34,15 @@
     .search-container {
         display: flex;
         padding: 1rem;
+        flex-grow: 1;
+        max-width: 540px;
 
         input {
             border-radius: 10px;
             padding: 0.75rem;
             font-size: 1rem;
             font-family: sans-serif;
-            width: 22rem;
+            width: 100%;
         }
 
         .icon {
@@ -82,10 +84,6 @@
         .search-container {
             order: 3;
             padding: 0.5rem;
-
-            input {
-                width: 18rem;
-            }
         }
 
     }

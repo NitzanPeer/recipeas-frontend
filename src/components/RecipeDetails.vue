@@ -19,7 +19,9 @@
             <br>
         </div>
         <div class="button-row">
-            <RouterLink class="btn-config1" tag="button" :to="'/'">סגור</RouterLink>
+            <RouterLink class="btn-config1" tag="button" title="חזרה לעמוד הבית" :to="'/'">
+                <font-awesome-icon :icon="['fas', 'arrow-left']" />
+            </RouterLink>
         </div>
     </section>
 </template>

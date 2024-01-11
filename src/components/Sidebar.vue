@@ -1,5 +1,7 @@
 <template>
-    <button class="add-tag-btn" @click="addNewTag">הוסף קטגוריה</button>
+    <button class="add-tag-btn" title="הוספת תגית" @click="addNewTag">
+        <font-awesome-icon :icon="['fas', 'plus']" />
+    </button>
     <ul class="tag-list clean-list">
         <li class="tag-btn" v-for="tag in tags" :class="`tag-${tag._id}`" :key="tag.title">
             <button class="tag-btn" :class="{ 'active-tag-btn': tag.isActive }" @click="toggleActiveTag(tag._id)">

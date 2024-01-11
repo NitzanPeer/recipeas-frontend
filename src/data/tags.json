@@ -1,18 +1,14 @@
 [
     {
-        "title": "זריזים",
-        "isActive": false
+        "title": "זריזים"
     },
     {
-        "title":"מרקים",
-        "isActive": false
+        "title":"מרקים"
     },
     {
-        "title":"אסיאתי",
-        "isActive": false
+        "title":"אסיאתי"
     },
     {
-        "title":"איטלקי",
-        "isActive": false
+        "title":"איטלקי"
     }
 ]

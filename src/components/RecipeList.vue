@@ -7,9 +7,15 @@
                 <p>{{ recipe.description }}</p>
                 <img src="../assets/images/lo-mien.jpg" />
                 <div class="button-row">
-                    <RouterLink tag="button" class="btn-config1" :to="'/recipe/details/' + recipe._id">צפה</RouterLink>
-                    <RouterLink tag="button" class="btn-config1" :to="'/recipe/edit/' + recipe._id">ערוך</RouterLink>
-                    <button class="btn-config1" @click="onRemoveRecipe(recipe._id)">הסר</button>
+                    <RouterLink tag="button" class="btn-config1" title="צפיה במתכון" :to="'/recipe/details/' + recipe._id">
+                            <span class="icon-container"><font-awesome-icon :icon="['fas', 'eye']" /></span>
+                    </RouterLink>
+                    <RouterLink tag="button" class="btn-config1" title="עריכה" :to="'/recipe/edit/' + recipe._id">
+                            <span class="icon-container"><font-awesome-icon :icon="['fas', 'pen']" /></span>
+                    </RouterLink>
+                    <button class="btn-config1" title="הסרה" @click="onRemoveRecipe(recipe._id)">
+                            <span class="icon-container"><font-awesome-icon :icon="['fas', 'trash']" /></span>
+                    </button>
                 </div>
             </li>
         </ul>
@@ -21,6 +27,7 @@ import RecipePreview from './RecipePreview.vue'
 import RecipeDetails from '../components/RecipeDetails.vue'
 import { RouterLink } from 'vue-router'
 import { mapGetters, mapActions } from 'vuex'
+// import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 
 export default {
@@ -47,6 +54,7 @@ export default {
     components: {
         RecipePreview,
         RecipeDetails,
+        // FontAwesomeIcon
     }
 }
 </script>

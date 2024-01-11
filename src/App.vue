@@ -2,9 +2,8 @@
 	<div class="header">
 		<AppHeader />
 	</div>
-	<div class="main-content">
+	<div class="main-content" v-bind:class="{ 'hide-sidebar': !isRecipesRoute }">
 		<div class="sidebar" v-if="isRecipesRoute">
-			<!-- <div class="sidebar"> -->
 			<Sidebar />
 		</div>
 		<div class="router">
@@ -14,23 +13,21 @@
 </template>
 
 <script setup>
+import { ref, watch } from "vue"
 import { RouterLink, useRoute } from 'vue-router'
+
 import AppHeader from './components/AppHeader.vue'
 import Sidebar from './components/Sidebar.vue'
 
 
 const route = useRoute()
 
-let isRecipesRoute = null
+let isRecipesRoute = ref(null)
 
-if (route.name === 'recipes' || route.name === undefined) {
-  isRecipesRoute = true
-} else {
-  isRecipesRoute = false
-}
+// const theme = computed(() => isRecipesRoute ? '' : 'hide-sidebar');
 
-// const isRecipesRoute = route.name === 'recipes'
-// const isRecipesView = this.$route.name === 'recipes'
-console.log('route.name', route.name)
+watch(route, (newValue, oldValue) => {
+	isRecipesRoute.value = newValue.name === 'recipes'
+})
 
 </script>

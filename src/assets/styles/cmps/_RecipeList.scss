@@ -40,7 +40,22 @@
             display: flex;
             justify-content: space-between;
             grid-gap: 0.625rem;
-            overflow: hidden
+            overflow: hidden;
+
+            button {
+                // position: relative;
+
+
+            }
+
+            button,
+            a {
+                position: relative;
+
+                div {
+                    // margin-block-start: 8px;
+                }
+            }
         }
     }
 }
