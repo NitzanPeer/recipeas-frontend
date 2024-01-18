@@ -58,6 +58,23 @@ async function addTag(tag) {
     }
 }
 
+async function removeTag(id) {
+    try {
+        const response = await fetch(`http://127.0.0.1:3030/tags/${id}`, {
+            method: 'DELETE'
+        })
+
+        if (!response.ok) {
+            throw new Error('Failed to remove tag')
+        }
+
+        return { success: true }
+    } catch (error) {
+        console.error('Error removing tag:', error)
+        throw error
+    }
+}
+
 async function updateTag(tag) {
     try {
         const response = await fetch(`http://127.0.0.1:3030/tags/${tag._id}`, {
@@ -74,23 +91,6 @@ async function updateTag(tag) {
         return await response.json()
     } catch (error) {
         console.error('Error updating tag:', error)
-        throw error
-    }
-}
-
-async function removeTag(id) {
-    try {
-        const response = await fetch(`http://127.0.0.1:3030/tags/${id}`, {
-            method: 'DELETE'
-        })
-
-        if (!response.ok) {
-            throw new Error('Failed to remove tag')
-        }
-
-        return { success: true }
-    } catch (error) {
-        console.error('Error removing tag:', error)
         throw error
     }
 }

@@ -42,19 +42,9 @@
             grid-gap: 0.625rem;
             overflow: hidden;
 
-            button {
-                // position: relative;
-
-
-            }
-
             button,
             a {
-                position: relative;
-
-                div {
-                    // margin-block-start: 8px;
-                }
+                padding: 0.1rem;
             }
         }
     }

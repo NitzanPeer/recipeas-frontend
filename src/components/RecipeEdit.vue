@@ -68,7 +68,6 @@
 <script>
 import { recipeService } from '../services/recipe.service'
 import { mapGetters, mapActions } from 'vuex'
-import { eventBus } from '../services/event-bus.service'
 
 export default {
     props: {
@@ -135,15 +134,15 @@ export default {
             this.recipe.method.splice(idx, 1)
         },
         // test:
-        uploadImg(ev) {
-            const file = ev.target.files[0]
-            const filePath = ev.target.value
-            if (filePath) {
-                const imgURL = filePath
-                console.log('imgURL', imgURL)
-                this.recipe.imgURL = imgURL
-            }
-        }
+        // uploadImg(ev) {
+        //     const file = ev.target.files[0]
+        //     const filePath = ev.target.value
+        //     if (filePath) {
+        //         const imgURL = filePath
+        //         console.log('imgURL', imgURL)
+        //         this.recipe.imgURL = imgURL
+        //     }
+        // }
     },
     computed: {
 

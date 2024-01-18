@@ -7,11 +7,9 @@
             <button class="tag-btn" :class="{ 'active-tag-btn': tag.isActive }" @click="toggleActiveTag(tag._id)">
                 {{ tag.title }}
             </button>
-            <!-- works but console error: -->
             <span class="delete-tag-btn fa-regular fa-trash-can" @click="deleteTag(tag._id)"></span>
-            <!-- new syntax that doesn't work: -->
+            <!-- new font-awesome syntax that doesn't work: -->
             <!-- <font-awesome-icon class="delete-tag-btn" :icon="['far', 'trash-can']" /> -->
-
         </li>
     </ul>
 </template>
@@ -24,15 +22,19 @@ export default {
     data() {
         return {
             tags: [],
-            activeTags: []
         }
     },
     async created() {
         await this.fetchTags()
-        await this.getAllTags()
+        await this.resetTags()
     },
     methods: {
-        ...mapActions(['fetchTags', 'addTag', 'removeTag', 'toggleTag', 'updateFilter']),
+        ...mapActions(['fetchTags', 'addTag', 'removeTag', 'toggleTag', 'resetFilter', 'updateFilter']),
+        async resetTags() {
+            // await this.fetchTags()
+            await this.getAllTags()
+            await this.resetFilter()
+        },
         async getAllTags() {
             this.tags = await this.getTags
         },
@@ -40,24 +42,20 @@ export default {
             await this.toggleTag(tagId)
             await this.updateFilter({ tags: this.getActiveTagTitles })
         },
-        // isTagActive(tagId) {
-        //     const tag = this.tags.find(tag => tag._id === tagId)
-        //     return tag ? tag.isActive : false
-        // },
         async addNewTag() {
             const tagTitle = prompt('מה שם הקטגוריה החדשה?')
             if (tagTitle) {
                 await this.addTag({ title: tagTitle })
-                await this.fetchTags()
+                await this.resetTags()
             }
         },
         async deleteTag(tagId) {
             const confirmed = confirm('להסיר את הקטגוריה?')
             if (confirmed) {
                 await this.removeTag(tagId)
-                await this.fetchTags()
+                await this.resetTags()
             }
-        },
+        }
     },
     computed: {
         ...mapGetters(['getTags', 'getActiveTagTitles']),

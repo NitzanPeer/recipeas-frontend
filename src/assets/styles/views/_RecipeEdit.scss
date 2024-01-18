@@ -4,6 +4,8 @@
     direction: rtl;
     padding-right: 2.5%;
     padding-left: 2.5%;
+    margin: 1rem;
+    background-color: #0a2544;
 
     button,
     a {
@@ -22,7 +24,7 @@
 
             button {
                 font-size: 1.25rem;
-                width: 3.2rem;
+                width: 2.5rem;
             }
         }
     }
@@ -34,7 +36,7 @@
 
         button,
         a {
-            width: 5rem;
+            width: 4rem;
             margin: 1rem;
         }
     }

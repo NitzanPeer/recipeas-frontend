@@ -23,18 +23,22 @@ export const recipeStore = {
             }
         },
         UPDATE_FILTERBY(state, filterBy) {
-            state.filterBy.txt = filterBy.txt
-            state.filterBy.tags = filterBy.tags
-            // state.filterBy = filterBy
+            if ('txt' in filterBy) {
+                state.filterBy.txt = filterBy.txt
+            }
+            if ('tags' in filterBy) {
+                state.filterBy.tags = filterBy.tags
+            }
         },
         UPDATE_FILTERED_RECIPES(state, filteredRecipes) {
             state.filteredRecipes = filteredRecipes
-        }
+        },
+
     },
     actions: {
-        async fetchRecipes({ commit }, filterBy = { txt: '' }) {
+        async fetchRecipes({ commit }, filterBy = { txt: '', tags: '' }) {
             try {
-                const recipes = await recipeService.getRecipes()
+                const recipes = await recipeService.getRecipes(filterBy)
                 commit('SET_RECIPES', recipes)
                 commit('UPDATE_FILTERED_RECIPES', recipes)
             } catch (error) {
@@ -46,7 +50,7 @@ export const recipeStore = {
             try {
                 const newRecipe = await recipeService.addRecipe(recipe)
                 commit('ADD_RECIPE', newRecipe)
-                dispatch('updateFilter', { txt: '' })
+                dispatch('resetFilter')
             } catch (error) {
                 console.error('Error adding recipe:', error)
                 throw error
@@ -56,7 +60,7 @@ export const recipeStore = {
             try {
                 await recipeService.updateRecipe(recipe)
                 commit('UPDATE_RECIPE', recipe)
-                dispatch('updateFilter', { txt: '' })
+                dispatch('resetFilter')
             } catch (error) {
                 console.error('Error updating recipe:', error)
                 throw error
@@ -66,7 +70,7 @@ export const recipeStore = {
             try {
                 await recipeService.removeRecipe(id)
                 commit('REMOVE_RECIPE', id)
-                dispatch('updateFilter', { txt: '' })
+                dispatch('resetFilter')
             } catch (error) {
                 console.error('Error removing recipe:', error)
                 throw error
@@ -99,10 +103,19 @@ export const recipeStore = {
                 console.error('Error updating filter:', error)
                 throw error
             }
+        },
+        async resetFilter({ dispatch }) {
+            try {
+                dispatch('updateFilter', { txt: '', tags: [] })
+            } catch (error) {
+                console.error('Error reseting filter:', error)
+                throw error
+            }
         }
     },
     getters: {
         getRecipes: state => state.recipes,
-        getFilteredRecipes: state => state.filteredRecipes
+        getFilteredRecipes: state => state.filteredRecipes,
+        getFilterBy: state => state.filterBy
     },
 }

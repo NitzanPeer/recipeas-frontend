@@ -7,7 +7,7 @@
                 <p>{{ recipe.description }}</p>
                 <img src="../assets/images/lo-mien.jpg" />
                 <div class="button-row">
-                    <RouterLink tag="button" class="btn-config1" title="צפיה במתכון" :to="'/recipe/details/' + recipe._id">
+                    <RouterLink tag="button" class="btn-config1" title="צפיה" :to="'/recipe/details/' + recipe._id">
                             <span class="icon-container"><font-awesome-icon :icon="['fas', 'eye']" /></span>
                     </RouterLink>
                     <RouterLink tag="button" class="btn-config1" title="עריכה" :to="'/recipe/edit/' + recipe._id">

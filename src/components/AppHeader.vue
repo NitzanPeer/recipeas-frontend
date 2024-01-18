@@ -11,6 +11,7 @@
             <div class="search-container">
                 <span class="material-symbols-outlined icon">search</span>
                 <input type="text" v-model="searchText" @input="onInput" placeholder="חפשו מתכון">
+                <!-- <input type="text" v-model="searchText" @change="onChange" placeholder="חפשו מתכון"> -->
             </div>
 
             <div class="brand-title">
