@@ -93,7 +93,6 @@ export const tagStore = {
     },
     getters: {
         getTags: state => state.tags,
-
         // We keep only active tags using the filter method
         // and extract their ids using the map method:
         getActiveTagIds: state => state.tags.filter(tag => tag.isActive).map(tag => tag._id),
