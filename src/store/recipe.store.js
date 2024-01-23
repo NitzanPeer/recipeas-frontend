@@ -41,6 +41,7 @@ export const recipeStore = {
                 const recipes = await recipeService.getRecipes(filterBy)
                 commit('SET_RECIPES', recipes)
                 commit('UPDATE_FILTERED_RECIPES', recipes)
+                console.log('Recipes Were Fetched')
             } catch (error) {
                 console.error('Error fetching recipes:', error)
                 throw error
@@ -84,6 +85,7 @@ export const recipeStore = {
                 const searchTags = filterBy.tags || []
 
                 const filteredRecipes = recipes.filter(recipe => {
+
                     const titleMatch = recipe.title.toLowerCase().includes(searchText.toLowerCase())
                     const tagMatch = searchTags.length === 0 || searchTags.every(tag => recipe.tags.includes(tag))
 
@@ -106,6 +108,7 @@ export const recipeStore = {
         },
         async resetFilter({ dispatch }) {
             try {
+                console.log('Filter Was Reset')
                 dispatch('updateFilter', { txt: '', tags: [] })
             } catch (error) {
                 console.error('Error reseting filter:', error)

@@ -27,7 +27,6 @@
             &:not(:last-child) {
                 border-left: 1px solid white;
             }
-
         }
     }
 
@@ -48,7 +47,7 @@
         .icon {
             font-size: 2.5rem;
             color: white;
-            margin-block-start: auto;
+            margin: auto
         }
     }
 
@@ -56,9 +55,6 @@
         font-size: 2.5rem;
         margin: 0.5rem;
     }
-
-
-
 }
 
 @media screen and (max-width: 768px) {

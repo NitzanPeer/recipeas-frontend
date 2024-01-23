@@ -20,17 +20,6 @@ async function getRecipes(filterBy = { txt: '', tags: [] }) {
         const recipes = await response.json()
 
         if (recipes && recipes.length) return recipes
-
-        // if (recipes && recipes.length) {
-        //     return recipes.filter(recipe => {
-        //         return (
-        //             recipe.title.includes(filterBy.txt) &&
-        //             filterBy.tags.every(tag => recipe.tags.includes(tag))
-        //         )
-        //     })
-        // } else {
-        //     return recipes
-        // }
     } catch (error) {
         console.error('Error fetching recipes:', error)
         throw error

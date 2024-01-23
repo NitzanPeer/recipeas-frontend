@@ -40,7 +40,7 @@ export default {
         },
         async toggleActiveTag(tagId) {
             await this.toggleTag(tagId)
-            await this.updateFilter({ tags: this.getActiveTagTitles })
+            await this.updateFilter({ tags: this.getActiveTagIds })
         },
         async addNewTag() {
             const tagTitle = prompt('מה שם הקטגוריה החדשה?')
@@ -58,7 +58,7 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(['getTags', 'getActiveTagTitles']),
+        ...mapGetters(['getTags', 'getActiveTagIds']),
     },
 }
 </script>

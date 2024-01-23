@@ -56,20 +56,10 @@ export const tagStore = {
                 commit('REMOVE_TAG', id)
                 commit('RESET_ACTIVE_TAGS')
 
-                // console.log()
+                // dispatch to recipeStore
+                dispatch('resetFilter')
+                dispatch('fetchRecipes')
 
-                // console.log('before', rootState.recipeStore.recipes)
-                // console.log('before', rootGetters['recipeStore/getFilteredRecipes'])
-
-
-                // dispatch to recipeStore methods across all modules (both tags and recipe stores)
-                // dispatch('recipeStore/resetFilter', null, { root: true })
-                // dispatch('recipeStore/fetchRecipes', null, { root: true })
-
-                // console.log('after', rootState.recipeStore.recipes)
-                // console.log('after', rootGetters['recipeStore/getFilteredRecipes'])
-
-                // console.log()
             } catch (error) {
                 console.error('Error removing tag:', error)
                 throw error
@@ -104,8 +94,20 @@ export const tagStore = {
     getters: {
         getTags: state => state.tags,
 
-        // we keep only active tags using the filter method
+        // We keep only active tags using the filter method
         // and extract their ids using the map method:
-        getActiveTagTitles: state => state.tags.filter(tag => tag.isActive).map(tag => tag._id),
+        getActiveTagIds: state => state.tags.filter(tag => tag.isActive).map(tag => tag._id),
+        // Same, with titles:
+        getActiveTagTitles: state => state.tags.filter(tag => tag.isActive).map(tag => tag.title),
+
+        getTagTitleById: state => tagId => {
+            const tag = state.tags.find(tag => tag._id === tagId)
+            return tag ? tag.title : null
+        },
+
+        getTagIdByTitle: state => tagTitle => {
+            const tag = state.tags.find(tag => tag.title === tagTitle)
+            return tag ? tag._id : null
+        }
     },
 }

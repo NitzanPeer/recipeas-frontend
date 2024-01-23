@@ -3,19 +3,32 @@
         <h2>{{ recipe.title }}</h2>
         <div>
             <br>
-            <h4>רכיבים:</h4>
-            <ul class="clean-list">
-                <li v-for="ingredient in recipe.ingredients">
-                    {{ ingredient }}
-                </li>
-            </ul>
+            <div class="tag-container">
+                <h4>תגיות:</h4>
+                <ul class="clean-list">
+                    <li v-for="tagId in recipe.tags">
+                        {{ getTagTitleById(tagId) }}
+                    </li>
+                </ul>
+            </div>
             <br>
-            <h4>אופן הכנה:</h4>
-            <ol>
-                <li v-for="step in recipe.method">
-                    {{ step }}
-                </li>
-            </ol>
+            <div class="ingredient-container">
+                <h4>רכיבים:</h4>
+                <ul class="">
+                    <li v-for="ingredient in recipe.ingredients">
+                        {{ ingredient }}
+                    </li>
+                </ul>
+            </div>
+            <br>
+            <div class="method-container">
+                <h4>אופן הכנה:</h4>
+                <ol class="">
+                    <li v-for="step in recipe.method">
+                        {{ step }}
+                    </li>
+                </ol>
+            </div>
             <br>
         </div>
         <div class="button-row">
@@ -28,25 +41,30 @@
 <script>
 
 import { recipeService } from '../services/recipe.service'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
 
     data() {
         return {
-            recipe: {}
+            recipe: {},
         }
     },
     async created() {
         await this.loadRecipe()
     },
-    // async mounted() {
-    //     await this.loadRecipe()
-    // },
     methods: {
         async loadRecipe() {
             const recipeId = this.$route.params.recipeId
             this.recipe = await recipeService.getById(recipeId)
         },
     },
+    computed: {
+        ...mapGetters(['getTagTitleById']),
+
+        // tagTitles() {
+        //     return this.recipe.tags.map(tagId => this.getTagTitleById(tagId))
+        // },
+    }
 }
 </script>

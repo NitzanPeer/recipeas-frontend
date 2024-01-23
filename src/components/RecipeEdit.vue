@@ -14,11 +14,23 @@
             </div>
 
             <div class="group">
+                <label>תגיות</label>
+                <Multiselect mode="tags"
+                    v-model="selectedTagTitles"
+                    :default="[]"
+                    :close-on-select="false"
+                    :searchable="true"
+                    :rtl="true"
+                    :options="tagSelectOptions" />
+            </div>
+
+            <div class="group">
                 <label>רכיבים</label>
                 <ul>
                     <li v-if="recipe.ingredients?.length" v-for="(ingredient, idx) in recipe.ingredients">
                         <input class="ingridient-input" type="text" v-model="recipe.ingredients[idx]">
-                        <button class="remove-input btn-config1" title="הסרה" @click.stop.prevent="removeIngridient(idx)">X</button>
+                        <button class="remove-btn btn-config1" title="הסרה"
+                            @click.stop.prevent="removeIngridient(idx)">X</button>
                     </li>
                 </ul>
                 <div class="add-container">
@@ -31,7 +43,7 @@
                 <ol>
                     <li v-if="recipe.method?.length" v-for="(step, idx) in recipe.method">
                         <input class="step-input" type="text" v-model="recipe.method[idx]">
-                        <button class="remove-input btn-config1" title="הסרה" @click.stop.prevent="removeStep(idx)">X</button>
+                        <button class="remove-btn btn-config1" title="הסרה" @click.stop.prevent="removeStep(idx)">X</button>
                     </li>
                 </ol>
                 <div class="add-container">
@@ -39,19 +51,6 @@
                 </div>
                 <!-- <input type="file" @change="uploadImg"> -->
             </div>
-
-            <!-- <div class="group">
-                <label>תגיות</label>
-                <ul>
-                    <li v-if="recipe.tags?.length" v-for="(tag, idx) in recipe.tags">
-                        <input class="tag-input" type="text" v-model="recipe.tags[idx]">
-                        <button class="remove-input btn-config1" @click.stop.prevent="removeTag(idx)">X</button>
-                    </li>
-                </ul>
-                <div class="add-container">
-                    <button class="add-input btn-config1" @click.stop.prevent="addTag">+</button>
-                </div>
-            </div> -->
 
             <div class="button-row">
                 <button class="btn-config1" title="שמירה" type="submit">
@@ -69,6 +68,9 @@
 import { recipeService } from '../services/recipe.service'
 import { mapGetters, mapActions } from 'vuex'
 
+import Multiselect from '@vueform/multiselect'
+
+
 export default {
     props: {
         recipeToEdit: { type: Object }
@@ -77,47 +79,60 @@ export default {
         return {
             recipe: {},
             isEditMode: false,
-            myFormData: null
+            tagSelectOptions: [],
+            selectedTagTitles: []
         }
     },
     async created() {
         if (this.$route.params.recipeId) {
             this.isEditMode = true
         }
+
         await this.loadRecipe()
+        if (!this.getTags.length) {
+            await this.fetchTags()
+        }
+
+        // Get tag titles based on tag ids so they can be shown in the multiselect
+        this.tagSelectOptions = this.getTags.map(tag => tag.title)
     },
-    // watch: {
-    //     recipeToEdit: {
-    //         handler(newRecipeToEdit) {
-    //             this.recipe = { ...newRecipeToEdit }
-    //         },
-    //         deep: true, // Watch changes within nested objects (ingredients and method)
-    //         immediate: true, // Trigger the handler immediately on component creation
-    //     },
-    // },
     methods: {
-        ...mapActions(['addRecipe', 'updateRecipe']),
+        ...mapActions(['addRecipe', 'updateRecipe', 'fetchTags']),
 
         async submitForm() {
+            console.log("🚀 ~ submitForm ~ recipe:", this.recipe)
+
+            // Get tag ids based on the tag titles the user picked in the multiselect
+            // so they could be put inside the object
+            this.recipe.tags = this.selectedTagTitles.map(title => this.getTagIdByTitle(title))
+
             if (this.recipe?._id) {
                 await this.updateRecipe(this.recipe)
             } else {
                 await this.addRecipe(this.recipe)
             }
             this.$router.push("/")
-
         },
         async loadRecipe() {
             if (this.isEditMode) {
                 const recipeId = this.$route.params.recipeId
                 this.recipe = await recipeService.getById(recipeId)
+
+                // Fetch tag titles based on tag ids
+                const tagTitles = this.recipe.tags.map(tagId => this.getTagTitleById(tagId))
+
+                // Filter out null titles (tags that couldn't be found)
+                const existingTagTitles = tagTitles.filter(title => title !== null)
+
+                this.selectedTagTitles = existingTagTitles
             } else {
                 this.recipe = {
                     title: '',
                     description: '',
                     ingredients: ['', '', ''],
                     method: ['', '', ''],
-                    imgURL: ''
+                    tags: [],
+                    // imgURL: '',
                 }
             }
         },
@@ -133,6 +148,12 @@ export default {
         removeStep(idx) {
             this.recipe.method.splice(idx, 1)
         },
+        myChangeEvent(val) {
+            console.log(val);
+        },
+        mySelectEvent({ id, text }) {
+            console.log({ id, text })
+        }
         // test:
         // uploadImg(ev) {
         //     const file = ev.target.files[0]
@@ -145,11 +166,14 @@ export default {
         // }
     },
     computed: {
-
+        ...mapGetters(['getTags', 'getTagIdByTitle', 'getTagTitleById']),
         header() {
-            const header = this.isEditMode ? 'עריכה' : 'הוספה'
+            const header = this.isEditMode ? 'עריכת מתכון' : 'הוספת מתכון'
             return header
         }
+    },
+    components: {
+        Multiselect
     }
 }
 </script>
