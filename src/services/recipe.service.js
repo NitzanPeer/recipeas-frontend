@@ -1,6 +1,4 @@
 
-// const ? = 'http://127.0.0.1:3030/'
-
 export const recipeService = {
     getRecipes,
     getById,
@@ -12,7 +10,7 @@ export const recipeService = {
 // this should be used to fetch the recipes from mongo once
 async function getRecipes(filterBy = { txt: '', tags: [] }) {
     try {
-        const response = await fetch(`http://127.0.0.1:3030/recipes`)
+        const response = await fetch(`${serverUrl}/recipes`)
         if (!response.ok) {
             throw new Error('Failed to fetch recipes')
         }
@@ -28,7 +26,7 @@ async function getRecipes(filterBy = { txt: '', tags: [] }) {
 
 async function getById(id) {
     try {
-        const response = await fetch(`http://127.0.0.1:3030/recipes/${id}`)
+        const response = await fetch(`${serverUrl}/recipes/${id}`)
         if (!response.ok) {
             throw new Error('Failed to fetch recipe')
         }
@@ -42,7 +40,7 @@ async function getById(id) {
 
 async function addRecipe(recipe) {
     try {
-        const response = await fetch('http://127.0.0.1:3030/recipes', {
+        const response = await fetch(`${serverUrl}/recipes`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -63,7 +61,7 @@ async function addRecipe(recipe) {
 
 async function updateRecipe(recipe) {
     try {
-        const response = await fetch(`http://127.0.0.1:3030/recipes/${recipe._id}`, {
+        const response = await fetch(`${serverUrl}/recipes/${recipe._id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -82,7 +80,7 @@ async function updateRecipe(recipe) {
 
 async function removeRecipe(id) {
     try {
-        const response = await fetch(`http://127.0.0.1:3030/recipes/${id}`, {
+        const response = await fetch(`${serverUrl}/recipes/${id}`, {
             method: 'DELETE'
         })
 

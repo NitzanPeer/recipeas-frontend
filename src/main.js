@@ -8,8 +8,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-// import 'jquery/dist/jquery.js';
-// import 'vue3-select2-component';
+const serverUrl = import.meta.env.VITE_SERVER_URL
 
 // Adding Font Awesome icons to the library
 library.add(fas)

@@ -8,7 +8,7 @@ export const tagService = {
 
 async function getTags() {
     try {
-        const response = await fetch(`http://127.0.0.1:3030/tags`)
+        const response = await fetch(`${serverUrl}/tags`)
         if (!response.ok) {
             throw new Error('Failed to fetch tags')
         }
@@ -25,7 +25,7 @@ async function getTags() {
 
 async function getById(id) {
     try {
-        const response = await fetch(`http://127.0.0.1:3030/tags/${id}`)
+        const response = await fetch(`${serverUrl}/tags/${id}`)
         if (!response.ok) {
             throw new Error('Failed to fetch tag')
         }
@@ -39,7 +39,7 @@ async function getById(id) {
 
 async function addTag(tag) {
     try {
-        const response = await fetch('http://127.0.0.1:3030/tags', {
+        const response = await fetch(`${serverUrl}/tags`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -60,7 +60,7 @@ async function addTag(tag) {
 
 async function removeTag(id) {
     try {
-        const response = await fetch(`http://127.0.0.1:3030/tags/${id}`, {
+        const response = await fetch(`${serverUrl}/tags/${id}`, {
             method: 'DELETE'
         })
 
@@ -77,7 +77,7 @@ async function removeTag(id) {
 
 async function updateTag(tag) {
     try {
-        const response = await fetch(`http://127.0.0.1:3030/tags/${tag._id}`, {
+        const response = await fetch(`${serverUrl}/tags/${tag._id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
