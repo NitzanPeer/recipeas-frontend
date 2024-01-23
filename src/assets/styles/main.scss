@@ -1,17 +1,17 @@
 // basics
 
-@import 'styles/basics/_base.scss';
-@import 'basics/_helpers.scss';
+@import 'basics/Base';
+@import 'basics/Helpers';
 
 // views
 
-@import 'views/_recipes.scss';
-@import 'views/_RecipeEdit.scss';
-@import 'views/_RecipeDetails.scss';
-@import 'views/_About.scss';
+@import 'views/Recipes';
+@import 'views/RecipeEdit';
+@import 'views/RecipeDetails';
+@import 'views/About';
 
 // cmps
 
-@import 'cmps/_Sidebar.scss';
-@import 'cmps/_AppHeader.scss';
-@import 'cmps/_RecipeList.scss';
+@import 'cmps/Sidebar';
+@import 'cmps/AppHeader';
+@import 'cmps/RecipeList';
