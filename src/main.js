@@ -8,8 +8,6 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-const serverUrl = import.meta.env.VITE_SERVER_URL
-
 // Adding Font Awesome icons to the library
 library.add(fas)
 

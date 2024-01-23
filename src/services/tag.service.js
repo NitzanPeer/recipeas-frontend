@@ -1,3 +1,5 @@
+import {serverUrl} from '../utils/env.js'
+
 export const tagService = {
     getTags,
     getById,

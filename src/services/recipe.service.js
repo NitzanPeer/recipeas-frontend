@@ -1,3 +1,4 @@
+import {serverUrl} from '../utils/env.js'
 
 export const recipeService = {
     getRecipes,
