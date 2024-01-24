@@ -1,8 +1,8 @@
 <template>
 	<div class="header">
-		<AppHeader />
+		<AppHeader :isRecipesRoute="isRecipesRoute"/>
 	</div>
-	<div class="main-content" v-bind:class="{ 'hide-sidebar': !isRecipesRoute }">
+	<div class="main-content" :class="{ 'hide-sidebar': !isRecipesRoute }">
 		<div class="sidebar" v-if="isRecipesRoute">
 			<Sidebar />
 		</div>
@@ -20,11 +20,10 @@ import AppHeader from './components/AppHeader.vue'
 import Sidebar from './components/Sidebar.vue'
 
 
-const route = useRoute()
-
+// checks whether we are in the 'recipes' route using a watcher,
+// so the app knows which parts to show / hide at any given time
 let isRecipesRoute = ref(null)
-
-// const theme = computed(() => isRecipesRoute ? '' : 'hide-sidebar');
+const route = useRoute()
 
 watch(route, (newValue, oldValue) => {
 	isRecipesRoute.value = newValue.name === 'recipes'
