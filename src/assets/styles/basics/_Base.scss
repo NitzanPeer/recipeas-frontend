@@ -13,6 +13,10 @@
 }
 
 body {
+    scroll-behavior: smooth;
+}
+
+body {
     min-height: 100vh;
     color: var(--color-text);
     background: var(--color-background);
@@ -30,7 +34,7 @@ body {
     font-size: 1.125rem;
     direction: rtl;
     // hack to fix mobile view:
-    overflow-x: hidden;
+    // overflow-x: hidden;
 }
 
 .coolBeans {
