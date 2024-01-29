@@ -1,6 +1,7 @@
 <template>
     <button class="add-tag-btn" title="הוספת תגית" @click="addNewTag">
-        <font-awesome-icon :icon="['fas', 'plus']" />
+        <!-- <font-awesome-icon :icon="['fas', 'plus']" /> -->
+        <h4>הוספה</h4>
     </button>
     <ul class="tag-list clean-list">
         <li class="tag-btn" v-for="tag in tags" :class="`tag-${tag._id}`" :key="tag.title">

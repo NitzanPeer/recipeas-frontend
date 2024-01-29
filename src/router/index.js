@@ -38,7 +38,7 @@ const router = createRouter({
     ]
 })
 
-// scroll to top of screen after each route switch (for mobile):
+// scroll to top of screen before each route switch (for mobile):
 router.beforeEach((to, from, next) => {
     window.scrollTo(0, 0)
     next()

@@ -1,7 +1,9 @@
 <template>
     <section class="about-container">
-        <h2>אז מי אני?</h2>
+        <h2 class="about-header">אז מי אני?</h2>
         <div v-html="formattedParagraphs"></div>
+        <br>
+        <h2 class="about-contact">אשמח לפידבק מכל סוג - prnitzan@gmail.com</h2>
     </section>
 </template>
 

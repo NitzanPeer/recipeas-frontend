@@ -1,15 +1,15 @@
 <template>
-	<div class="header">
-		<AppHeader :isRecipesRoute="isRecipesRoute"/>
-	</div>
-	<div class="main-content" :class="{ 'hide-sidebar': !isRecipesRoute }">
-		<div class="sidebar" v-if="isRecipesRoute">
-			<Sidebar />
+		<div class="header">
+			<AppHeader :isRecipesRoute="isRecipesRoute"/>
 		</div>
-		<div class="router">
-			<RouterView />
+		<div class="main-content" :class="{ 'hide-sidebar': !isRecipesRoute }">
+			<div class="sidebar" v-if="isRecipesRoute">
+				<Sidebar />
+			</div>
+			<div class="router">
+				<RouterView />
+			</div>
 		</div>
-	</div>
 </template>
 
 <script setup>

@@ -1,10 +1,11 @@
 <template>
     <section class="recipes-container">
         <main>
-            <div class="card-header-container">
+            <div class="recipes-header-container">
                 <h3>{{ recipeCounter }}</h3>
                 <RouterLink class="btn-config1 add-recipe-btn" tag="button" title="הוספת מתכון" :to="'/recipe/add/'">
-                    <font-awesome-icon :icon="['fas', 'plus']" />
+                    <!-- <font-awesome-icon :icon="['fas', 'plus']" /> -->
+                   הוספה
                 </RouterLink>
             </div>
             <RecipeList @remove="remove" @edit="edit"/>

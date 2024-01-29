@@ -15,14 +15,22 @@
             text-align: center;
             font-size: 1.8rem;
             font-weight: bold;
-            text-decoration: underline;
+            // text-decoration: underline;
+            // color: #5be79f;
+            color: #0a2544;
+            // border: solid wheat;
+            // box-shadow: inset 0 0 0 2px #616467;
+            // background-color: rgb(160, 116, 35);
+            background-color: rgb(255 220 157);
+            border-radius: 10px;
+            text-wrap: balance;
         }
 
         p {
             text-align: center;
             font-size: 1.125rem;
-            line-height: 2.5ex;
-            height: 7.5ex;
+            padding: 10px;
+            text-wrap:pretty;
         }
 
         h4,
@@ -45,6 +53,7 @@
             button,
             a {
                 padding: 0.1rem;
+                background-color: #f5a329;
             }
         }
     }

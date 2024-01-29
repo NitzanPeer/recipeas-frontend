@@ -18,10 +18,10 @@
                 display: block;
                 padding: 1rem;
                 color: white;
-            }
 
-            &:hover {
-                background-color: #666;
+                &:hover {
+                    color: wheat;
+                }
             }
 
             &:not(:last-child) {

@@ -1,29 +1,52 @@
-# recipes
+# ReciPeas
 
-This template should help get you started developing with Vue 3 in Vite.
+ReciPeas is a recipe management app dedicated to food lovers
+
+## Features
+
+Add, edit, and delete recipes.
+Categorize recipes with tags.
+Search and filter recipes by various criteria.
+View recipe details including ingredients and instructions.
+
+## Technologies Used
+
+* Vue.js: A progressive JavaScript framework for building user interfaces.
+* Vue Router: The official router for Vue.js, used for client-side routing.
+* Vuex: A state management pattern and library for Vue.js applications.
+* Vite: A build tool that aims to provide a faster and leaner development experience for modern web projects.
+* FontAwesome: A library of free icons that can be used in web projects.
+
 
 ## Recommended IDE Setup
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+[VSCode](https://code.visualstudio.com/)
+
+## Project Setup
+Frontend:
+1. Clone this repository.
+
+2. Navigate to the frontend directory
+
+3. Install dependencies using npm:
+
+    ```sh
+    npm install
+    ```
+
+4. Start the development server:
+
+    ```sh
+    npm run dev
+    ```
 
 ## Customize configuration
 
 See [Vite Configuration Reference](https://vitejs.dev/config/).
 
-## Project Setup
+## Planned features for next releases
 
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+* Edit Tag option (rename etc)
+* Add image upload option to add recipe flow
+* Add share recipe options (Wapp, Fbook, Instagram etc)
+* Right click menus for recipes/tags etc
