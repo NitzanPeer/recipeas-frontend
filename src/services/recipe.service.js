@@ -8,7 +8,6 @@ export const recipeService = {
     removeRecipe
 }
 
-// this should be used to fetch the recipes from mongo once
 async function getRecipes(filterBy = { txt: '', tags: [] }) {
     try {
         const response = await fetch(`${serverUrl}/recipes`)

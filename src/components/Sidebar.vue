@@ -1,7 +1,6 @@
 <template>
     <button class="add-tag-btn" title="הוספת תגית" @click="addNewTag">
-        <!-- <font-awesome-icon :icon="['fas', 'plus']" /> -->
-        <h4>הוספה</h4>
+        <h4>הוספת קטגוריה</h4>
     </button>
     <ul class="tag-list clean-list">
         <li class="tag-btn" v-for="tag in tags" :class="`tag-${tag._id}`" :key="tag.title">
@@ -10,10 +9,7 @@
             @contextmenu="showContextMenu($event, tag._id)"
             >
                 {{ tag.title }}
-                <!-- <span class="delete-tag-btn fa-regular fa-trash-can" @click.stop.prevent="deleteTag(tag._id)"></span> -->
             </button>
-            <!-- new font-awesome syntax that doesn't work: -->
-            <!-- <font-awesome-icon class="delete-tag-btn" :icon="['far', 'trash-can']" /> -->
         </li>
     </ul>
 </template>
@@ -35,7 +31,6 @@ export default {
     methods: {
         ...mapActions(['fetchTags', 'addTag', 'removeTag', 'toggleTag', 'resetFilter', 'updateFilter']),
         async resetTags() {
-            // await this.fetchTags()
             await this.getAllTags()
             await this.resetFilter()
         },

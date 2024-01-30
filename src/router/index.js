@@ -31,9 +31,6 @@ const router = createRouter({
             path: '/about',
             name: 'about',
             component: About
-
-            // why do we need the anon func here?
-            // component: () => import('../views/AboutView.vue')
         }
     ]
 })

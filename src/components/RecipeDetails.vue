@@ -61,10 +61,6 @@ export default {
     },
     computed: {
         ...mapGetters(['getTagTitleById']),
-
-        // tagTitles() {
-        //     return this.recipe.tags.map(tagId => this.getTagTitleById(tagId))
-        // },
     }
 }
 </script>

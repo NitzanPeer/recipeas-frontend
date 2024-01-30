@@ -29,8 +29,6 @@ body {
     color: white;
     font-size: 1.125rem;
     direction: rtl;
-    // fix for mobile view:
-    // overflow: hidden;
 }
 
 .coolBeans {
@@ -97,17 +95,16 @@ a {
     cursor: pointer;
     border-radius: 6px;
     padding: 0.5rem;
-    background-color: rgb(72, 255, 0);
+    background-color: #f5a329;
     border-style: none;
     font-size: 1rem;
-    font-family: sans-serif;
     color: black;
     width: 5rem;
     text-align: center;
     transition: background-color 0.3s ease-in-out;
 
     &:hover {
-        background-color: rgb(27, 189, 22)
+        background-color: #f8d095
     }
 }
 

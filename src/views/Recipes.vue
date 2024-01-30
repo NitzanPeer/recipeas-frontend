@@ -4,8 +4,7 @@
             <div class="recipes-header-container">
                 <h3>{{ recipeCounter }}</h3>
                 <RouterLink class="btn-config1 add-recipe-btn" tag="button" title="הוספת מתכון" :to="'/recipe/add/'">
-                    <!-- <font-awesome-icon :icon="['fas', 'plus']" /> -->
-                   הוספה
+                    <h3 class="routerlink-text">הוספת מתכון</h3>
                 </RouterLink>
             </div>
             <RecipeList @remove="remove" @edit="edit"/>

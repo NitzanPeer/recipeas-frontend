@@ -23,7 +23,7 @@ View recipe details including ingredients and instructions.
 [VSCode](https://code.visualstudio.com/)
 
 ## Project Setup
-Frontend:
+
 1. Clone this repository.
 
 2. Navigate to the frontend directory
@@ -43,6 +43,10 @@ Frontend:
 ## Customize configuration
 
 See [Vite Configuration Reference](https://vitejs.dev/config/).
+
+## Backend link
+
+https://github.com/NitzanPeer/recipeas-backend
 
 ## Planned features for next releases
 
